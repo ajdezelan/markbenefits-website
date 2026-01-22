@@ -1,787 +1,2010 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mark Benefits - Independent Benefits Consulting</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        .fade-in { animation: fadeIn 0.5s ease-in; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        .hidden { display: none; }
-        html { scroll-behavior: smooth; }
-    </style>
-</head>
-<body class="bg-white">
-    <!-- Top Bar -->
-    <div class="bg-gray-900 text-white py-2 px-4">
-        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center text-sm">
-            <a href="/cdn-cgi/l/email-protection#cda4a3aba28da0acbfa6e0afa8a3a8aba4b9bee3aea2a0" class="hover:text-blue-300">✉️ <span class="__cf_email__" data-cfemail="462f282029062b27342d6b24232823202f32356825292b">info@mark-benefits.com</span></a>
-            <div class="flex items-center space-x-4">
-                <a href="tel:317-516-8938" class="hover:text-blue-300">📞 317-516-8938</a>
-                <span class="text-gray-400">|</span>
-                <span>Fishers, Indiana</span>
-            </div>
-        </div>
-    </div>
+import React, { useState, useEffect } from 'react';
+import { BarChart3, MessageSquare, Heart, TrendingUp, Building2, Users, ShoppingBag, Menu, X, CheckCircle, DollarSign, ArrowRight, Shield, Calculator, Download, Mail, Calendar, FileText, Clock, Home, Phone, MapPin, Award, Target, Briefcase, BookOpen, AlertCircle } from 'lucide-react';
 
-    <!-- Header -->
-    <header class="bg-white shadow-sm border-b sticky top-0 z-30">
-        <div class="max-w-7xl mx-auto px-4 py-4">
-            <div class="flex justify-between items-center">
-                <a href="#home" class="flex items-center space-x-3">
-                    <div class="bg-gradient-to-br from-blue-600 to-blue-800 rounded-lg p-3 shadow-md">
-                        <div class="text-center">
-                            <div class="text-xl font-black text-white tracking-wide">MARK</div>
-                            <div class="text-xs font-semibold text-blue-200 tracking-wider">BENEFITS</div>
-                        </div>
-                    </div>
-                    <div>
-                        <h1 class="text-xl font-bold text-gray-900">Mark Benefits</h1>
-                        <p class="text-gray-600 text-xs">From Hire to Retire</p>
-                    </div>
-                </a>
-                <a href="tel:317-516-8938" class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 font-semibold">
-                    Get Started
-                </a>
-            </div>
-        </div>
-    </header>
+// Simple CSS animations
+const styles = `
+  @keyframes slideIn {
+    from {
+      transform: translateX(100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  .animate-slide-in {
+    animation: slideIn 0.3s ease-out;
+  }
+  
+  .animate-fade-in {
+    animation: fadeIn 0.3s ease-out;
+  }
+`;
 
-    <!-- Hero -->
-    <section id="home" class="bg-gradient-to-r from-blue-900 to-blue-700 text-white py-24 fade-in">
-        <div class="max-w-7xl mx-auto px-4">
-            <h2 class="text-5xl md:text-6xl font-bold mb-6">Smart Benefits Solutions<br>From Hire to Retire</h2>
-            <p class="text-xl mb-8 text-blue-100 max-w-3xl">Independent benefits consulting for Indiana municipalities, Medicare beneficiaries, and small businesses.</p>
-            <div class="flex gap-4">
-                <a href="tel:317-516-8938" class="bg-white text-blue-900 px-8 py-4 rounded font-bold text-lg hover:bg-gray-100">
-                    📞 317-516-8938
-                </a>
-                <a href="#tools" class="bg-transparent border-2 border-white px-8 py-4 rounded font-bold text-lg hover:bg-white hover:text-blue-900">
-                    View Tools
-                </a>
-            </div>
-        </div>
-    </section>
+// Inject styles
+if (typeof document !== 'undefined') {
+  const styleSheet = document.createElement('style');
+  styleSheet.textContent = styles;
+  document.head.appendChild(styleSheet);
+}
 
-    <!-- Stats -->
-    <section class="py-16 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-4 grid md:grid-cols-4 gap-8 text-center">
-            <div><div class="text-5xl font-bold text-blue-600 mb-2">290+</div><div class="text-gray-600">Municipalities Served</div></div>
-            <div><div class="text-5xl font-bold text-blue-600 mb-2">15+</div><div class="text-gray-600">Years Experience</div></div>
-            <div><div class="text-5xl font-bold text-blue-600 mb-2">100%</div><div class="text-gray-600">Independent</div></div>
-            <div><div class="text-5xl font-bold text-blue-600 mb-2">24/7</div><div class="text-gray-600">AI Support</div></div>
-        </div>
-    </section>
-
-    <!-- Services -->
-    <section class="py-20">
-        <div class="max-w-7xl mx-auto px-4">
-            <h2 class="text-4xl font-bold text-center mb-16">Our Services</h2>
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Municipal -->
-                <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition">
-                    <div class="h-48 bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center">
-                        <span class="text-8xl">🏛️</span>
-                    </div>
-                    <div class="p-8">
-                        <h3 class="text-2xl font-bold mb-4">Municipal Guidance</h3>
-                        <p class="text-gray-600 mb-6">Optimize benefits costs for Indiana cities, towns, and counties with data-driven analysis.</p>
-                        <ul class="space-y-2 mb-6 text-sm">
-                            <li>✓ AIM Trust comparison analysis</li>
-                            <li>✓ Cost forecasting & budgeting</li>
-                            <li>✓ RFP generation</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <!-- Medicare -->
-                <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition">
-                    <div class="h-48 bg-gradient-to-br from-red-500 to-pink-600 flex items-center justify-center">
-                        <span class="text-8xl">❤️</span>
-                    </div>
-                    <div class="p-8">
-                        <h3 class="text-2xl font-bold mb-4">Medicare Solutions</h3>
-                        <p class="text-gray-600 mb-6">Expert guidance through Medicare choices. Find the right Medigap plan and maximize benefits.</p>
-                        <ul class="space-y-2 mb-6 text-sm">
-                            <li>✓ Medigap plan comparison</li>
-                            <li>✓ Part D prescription analysis</li>
-                            <li>✓ Turning 65 enrollment support</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Employee Benefits -->
-                <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition">
-                    <div class="h-48 bg-gradient-to-br from-green-500 to-teal-600 flex items-center justify-center">
-                        <span class="text-8xl">💼</span>
-                    </div>
-                    <div class="p-8">
-                        <h3 class="text-2xl font-bold mb-4">Employee Benefits</h3>
-                        <p class="text-gray-600 mb-6">Voluntary benefits for small businesses. Zero-cost employer programs employees love.</p>
-                        <ul class="space-y-2 mb-6 text-sm">
-                            <li>✓ Voluntary life & disability</li>
-                            <li>✓ Accident & critical illness</li>
-                            <li>✓ 100% employee-paid options</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Tools Section -->
-    <section id="tools" class="py-20 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-4">
-            <h2 class="text-4xl font-bold text-center mb-4">Municipal Tools</h2>
-            <p class="text-xl text-gray-600 text-center mb-12">Free benefits optimization tools for Indiana municipalities</p>
-            
-            <!-- Tool Navigation Cards -->
-            <div class="grid md:grid-cols-4 gap-6 mb-12">
-                <button onclick="showTool('calculator')" class="tool-nav bg-white rounded-lg shadow-md p-6 border-t-4 border-blue-600 hover:shadow-xl transition text-left cursor-pointer">
-                    <div class="text-4xl mb-4">🧮</div>
-                    <h3 class="text-xl font-bold mb-3">Cost Calculator</h3>
-                    <p class="text-gray-600 text-sm">Compare current costs to market alternatives</p>
-                </button>
-                <button onclick="showTool('forecast')" class="tool-nav bg-white rounded-lg shadow-md p-6 border-t-4 border-blue-600 hover:shadow-xl transition text-left cursor-pointer">
-                    <div class="text-4xl mb-4">📈</div>
-                    <h3 class="text-xl font-bold mb-3">Budget Forecast</h3>
-                    <p class="text-gray-600 text-sm">Project multi-year costs and savings</p>
-                </button>
-                <button onclick="showTool('rfp')" class="tool-nav bg-white rounded-lg shadow-md p-6 border-t-4 border-blue-600 hover:shadow-xl transition text-left cursor-pointer">
-                    <div class="text-4xl mb-4">📄</div>
-                    <h3 class="text-xl font-bold mb-3">RFP Generator</h3>
-                    <p class="text-gray-600 text-sm">Create professional RFP documents</p>
-                </button>
-                <button onclick="showTool('legislative')" class="tool-nav bg-white rounded-lg shadow-md p-6 border-t-4 border-blue-600 hover:shadow-xl transition text-left cursor-pointer">
-                    <div class="text-4xl mb-4">📚</div>
-                    <h3 class="text-xl font-bold mb-3">Legislative Tracker</h3>
-                    <p class="text-gray-600 text-sm">Track Indiana benefits legislation</p>
-                </button>
-            </div>
-
-            <!-- Cost Calculator Tool -->
-            <div id="calculator-tool" class="tool-panel hidden">
-                <div class="bg-white rounded-lg shadow-lg p-8">
-                    <h3 class="text-3xl font-bold mb-6">Benefits Cost Calculator</h3>
-                    <div class="grid md:grid-cols-2 gap-6 mb-6">
-                        <div>
-                            <label class="block text-sm font-semibold mb-2">Municipality Name</label>
-                            <input type="text" id="calc-municipality" placeholder="City of Fishers" class="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-semibold mb-2">Number of Employees</label>
-                            <input type="number" id="calc-employees" placeholder="500" class="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-semibold mb-2">Employee Contribution (Monthly)</label>
-                            <input type="number" id="calc-employee-premium" placeholder="85" class="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-semibold mb-2">Employer Cost (Monthly)</label>
-                            <input type="number" id="calc-employer-premium" placeholder="915" class="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none">
-                        </div>
-                    </div>
-                    <button onclick="calculateCosts()" class="w-full bg-blue-600 text-white py-4 rounded-lg font-bold text-lg hover:bg-blue-700 transition">
-                        Calculate Savings
-                    </button>
-                    
-                    <!-- Results -->
-                    <div id="calc-results" class="hidden mt-8">
-                        <div class="grid md:grid-cols-3 gap-6 mb-6">
-                            <div class="bg-gray-50 rounded-lg p-6 border-l-4 border-gray-500">
-                                <p class="text-sm text-gray-600 mb-2">Current Annual Cost</p>
-                                <p id="current-cost" class="text-3xl font-bold text-gray-900"></p>
-                            </div>
-                            <div class="bg-blue-50 rounded-lg p-6 border-l-4 border-blue-500">
-                                <p class="text-sm text-gray-600 mb-2">Market Alternative</p>
-                                <p id="market-cost" class="text-3xl font-bold text-blue-600"></p>
-                            </div>
-                            <div class="bg-green-50 rounded-lg p-6 border-l-4 border-green-500">
-                                <p class="text-sm text-gray-600 mb-2">Potential Savings</p>
-                                <p id="savings-amount" class="text-3xl font-bold text-green-600"></p>
-                                <p id="savings-percent" class="text-sm text-green-700 mt-1"></p>
-                            </div>
-                        </div>
-                        <div class="bg-blue-50 border-2 border-blue-200 rounded-lg p-6">
-                            <h4 class="font-bold text-blue-900 mb-2">Analysis</h4>
-                            <p id="recommendation" class="text-gray-800"></p>
-                        </div>
-                        <div class="mt-6 flex gap-4">
-                            <button onclick="downloadReport()" class="flex-1 bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700">
-                                📥 Download Report
-                            </button>
-                            <a href="tel:317-516-8938" class="flex-1 bg-green-600 text-white py-3 rounded-lg font-semibold hover:bg-green-700 text-center">
-                                📞 Discuss Results
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Budget Forecast Tool -->
-            <div id="forecast-tool" class="tool-panel hidden">
-                <div class="bg-white rounded-lg shadow-lg p-8">
-                    <h3 class="text-3xl font-bold mb-6">Budget Forecast Tool</h3>
-                    <div class="grid md:grid-cols-2 gap-6 mb-6">
-                        <div>
-                            <label class="block text-sm font-semibold mb-2">Current Monthly Cost per Employee</label>
-                            <input type="number" id="forecast-cost" placeholder="1000" class="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-semibold mb-2">Number of Employees</label>
-                            <input type="number" id="forecast-employees" placeholder="500" class="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-semibold mb-2">Expected Annual Inflation (%)</label>
-                            <input type="number" id="forecast-inflation" placeholder="5" value="5" class="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-semibold mb-2">Forecast Years</label>
-                            <input type="number" id="forecast-years" placeholder="5" value="5" min="1" max="10" class="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none">
-                        </div>
-                    </div>
-                    <button onclick="generateForecast()" class="w-full bg-indigo-600 text-white py-4 rounded-lg font-bold text-lg hover:bg-indigo-700 transition">
-                        Generate Forecast
-                    </button>
-                    
-                    <!-- Forecast Results -->
-                    <div id="forecast-results" class="hidden mt-8">
-                        <div class="bg-green-50 border-2 border-green-500 rounded-lg p-6 mb-6">
-                            <h4 class="text-lg font-bold text-green-900 mb-2">Total Savings Potential</h4>
-                            <p id="total-savings" class="text-4xl font-bold text-green-600"></p>
-                        </div>
-                        <div class="overflow-x-auto">
-                            <table class="w-full text-sm">
-                                <thead class="bg-gray-100">
-                                    <tr>
-                                        <th class="text-left py-3 px-4">Year</th>
-                                        <th class="text-right py-3 px-4">Current Path</th>
-                                        <th class="text-right py-3 px-4">Market Alternative</th>
-                                        <th class="text-right py-3 px-4">Annual Savings</th>
-                                        <th class="text-right py-3 px-4">Cumulative</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="forecast-table"></tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- RFP Generator Tool -->
-            <div id="rfp-tool" class="tool-panel hidden">
-                <div class="bg-white rounded-lg shadow-lg p-8">
-                    <h3 class="text-3xl font-bold mb-6">RFP Generator</h3>
-                    <div class="space-y-6 mb-6">
-                        <div class="grid md:grid-cols-2 gap-6">
-                            <div>
-                                <label class="block text-sm font-semibold mb-2">Municipality Name</label>
-                                <input type="text" id="rfp-municipality" placeholder="City of Indianapolis" class="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none">
-                            </div>
-                            <div>
-                                <label class="block text-sm font-semibold mb-2">Number of Employees</label>
-                                <input type="number" id="rfp-employees" placeholder="500" class="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none">
-                            </div>
-                        </div>
-                        <div>
-                            <label class="block text-sm font-semibold mb-2">Current Carrier (Optional)</label>
-                            <input type="text" id="rfp-carrier" placeholder="AIM Trust" class="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none">
-                        </div>
-                        <div class="grid md:grid-cols-2 gap-6">
-                            <div>
-                                <label class="block text-sm font-semibold mb-2">RFP Due Date</label>
-                                <input type="date" id="rfp-due-date" class="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none">
-                            </div>
-                            <div>
-                                <label class="block text-sm font-semibold mb-2">Desired Effective Date</label>
-                                <input type="date" id="rfp-effective-date" class="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none">
-                            </div>
-                        </div>
-                        <div class="grid md:grid-cols-2 gap-6">
-                            <div>
-                                <label class="block text-sm font-semibold mb-2">Contact Name</label>
-                                <input type="text" id="rfp-contact-name" placeholder="Jane Smith" class="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none">
-                            </div>
-                            <div>
-                                <label class="block text-sm font-semibold mb-2">Contact Email</label>
-                                <input type="email" id="rfp-contact-email" placeholder="jsmith@city.gov" class="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none">
-                            </div>
-                        </div>
-                    </div>
-                    <button onclick="generateRFP()" class="w-full bg-blue-600 text-white py-4 rounded-lg font-bold text-lg hover:bg-blue-700 transition flex items-center justify-center space-x-2">
-                        <span>📄</span>
-                        <span>Generate & Download RFP</span>
-                    </button>
-                    <div class="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
-                        <p class="text-sm text-blue-900">
-                            <strong>Note:</strong> This generates a comprehensive RFP template. Review and customize it to match your specific requirements before distribution.
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Legislative Tracker Tool -->
-            <div id="legislative-tool" class="tool-panel hidden">
-                <div class="bg-white rounded-lg shadow-lg p-8">
-                    <div class="flex items-center justify-between mb-6">
-                        <div>
-                            <h3 class="text-3xl font-bold">Indiana Benefits Legislation Tracker</h3>
-                            <p class="text-gray-600 mt-2">Real-time tracking of health and benefits legislation</p>
-                        </div>
-                        <button onclick="fetchLegislation()" id="refresh-btn" class="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition">
-                            Refresh
-                        </button>
-                    </div>
-                    
-                    <input type="text" id="leg-search" placeholder="Search by bill number, title, or description..." 
-                           onkeyup="filterBills()" 
-                           class="w-full px-4 py-3 border rounded-lg mb-6 focus:ring-2 focus:ring-blue-500 focus:outline-none">
-                    
-                    <div id="leg-loading" class="text-center py-12 hidden">
-                        <div class="inline-block animate-spin rounded-full h-12 w-12 border-b-4 border-blue-600 mb-4"></div>
-                        <p class="text-gray-600">Loading Indiana legislation...</p>
-                    </div>
-                    
-                    <div id="leg-error" class="hidden bg-red-50 border-2 border-red-200 rounded-lg p-6 mb-6">
-                        <p class="text-red-800 font-semibold mb-2">Unable to load legislation</p>
-                        <p class="text-red-700 text-sm">
-                            If this issue persists, please contact us at <a href="tel:317-516-8938" class="underline">317-516-8938</a> 
-                            or <a href="/cdn-cgi/l/email-protection#8be2e5ede4cbe6eaf9e0a6e9eee5eeede2fff8a5e8e4e6" class="underline"><span class="__cf_email__" data-cfemail="f39a9d959cb39e928198de91969d96959a8780dd909c9e">[email&#160;protected]</span></a>
-                        </p>
-                    </div>
-                    
-                    <div id="leg-results" class="space-y-4">
-                        <div class="text-center py-8 text-gray-500">
-                            Click "Refresh" to load current Indiana legislation
-                        </div>
-                    </div>
-                    
-                    <div class="mt-8 bg-gradient-to-r from-blue-50 to-indigo-50 border-2 border-blue-200 rounded-lg p-6">
-                        <h4 class="font-bold text-blue-900 mb-2">About Legislative Tracking</h4>
-                        <p class="text-sm text-blue-800 leading-relaxed">
-                            <strong>Powered by LegiScan:</strong> Track Indiana legislation affecting municipal benefits, health insurance, and employee coverage. 
-                            This tool monitors current session bills to help municipalities stay informed of potential regulatory changes.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA -->
-    <section class="py-20 bg-gradient-to-r from-blue-600 to-indigo-700 text-white">
-        <div class="max-w-4xl mx-auto px-4 text-center">
-            <h2 class="text-4xl font-bold mb-6">Ready to Optimize Your Benefits?</h2>
-            <p class="text-xl mb-8">Whether you're a municipality, turning 65, or a small business owner—we're here to help.</p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="tel:317-516-8938" class="bg-white text-blue-600 px-8 py-4 rounded font-bold text-lg hover:bg-gray-100">
-                    📞 Call 317-516-8938
-                </a>
-                <a href="/cdn-cgi/l/email-protection#fe97909891be939f8c95d39c9b909b98978a8dd09d9193" class="bg-transparent border-2 border-white px-8 py-4 rounded font-bold text-lg hover:bg-white hover:text-blue-600">
-                    ✉️ Email Us
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-16">
-        <div class="max-w-7xl mx-auto px-4">
-            <div class="grid md:grid-cols-4 gap-12 mb-12">
-                <div>
-                    <div class="bg-white rounded-lg p-2 inline-block mb-4">
-                        <div class="text-center">
-                            <div class="text-xl font-black text-blue-600">MARK</div>
-                            <div class="text-xs font-semibold text-gray-600">BENEFITS</div>
-                        </div>
-                    </div>
-                    <p class="text-gray-400 text-sm">Independent benefits consulting serving Indiana since 2010.</p>
-                </div>
-                <div>
-                    <h3 class="font-bold mb-4">Services</h3>
-                    <ul class="space-y-2 text-gray-400 text-sm">
-                        <li>Municipal Guidance</li>
-                        <li>Medicare Solutions</li>
-                        <li>Employee Benefits</li>
-                    </ul>
-                </div>
-                <div>
-                    <h3 class="font-bold mb-4">Contact</h3>
-                    <ul class="space-y-2 text-gray-400 text-sm">
-                        <li>📍 Fishers, Indiana</li>
-                        <li>📞 <a href="tel:317-516-8938" class="hover:text-white">317-516-8938</a></li>
-                        <li>✉️ <a href="/cdn-cgi/l/email-protection#0b62656d644b666a796026696e656e6d627f7825686466" class="hover:text-white"><span class="__cf_email__" data-cfemail="9ef7f0f8f1def3ffecf5b3fcfbf0fbf8f7eaedb0fdf1f3">[email&#160;protected]</span></a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h3 class="font-bold mb-4">Office Hours</h3>
-                    <p class="text-gray-400 text-sm">Mon-Fri: 9AM-5PM<br>Sat: By Appointment<br>Sun: Closed</p>
-                </div>
-            </div>
-            <div class="border-t border-gray-800 pt-8 text-center text-gray-400 text-sm">
-                © 2026 Mark Benefits. All rights reserved.
-            </div>
-        </div>
-    </footer>
-
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-        // Tool Navigation
-        function showTool(toolName) {
-            // Hide all tools
-            document.querySelectorAll('.tool-panel').forEach(panel => {
-                panel.classList.add('hidden');
-            });
-            
-            // Show selected tool
-            document.getElementById(toolName + '-tool').classList.remove('hidden');
-            
-            // Scroll to tool
-            document.getElementById(toolName + '-tool').scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-
-        // Cost Calculator
-        let calculationResults = {};
-        
-        function calculateCosts() {
-            const municipality = document.getElementById('calc-municipality').value || 'Your Municipality';
-            const employees = parseInt(document.getElementById('calc-employees').value) || 500;
-            const employeePremium = parseFloat(document.getElementById('calc-employee-premium').value) || 0;
-            const employerPremium = parseFloat(document.getElementById('calc-employer-premium').value) || 0;
-            
-            const totalPremium = employeePremium + employerPremium || 1000;
-            const marketPremium = Math.round(totalPremium * 0.87); // 13% savings
-            const aimCost = totalPremium * employees * 12;
-            const marketCost = marketPremium * employees * 12;
-            const savings = aimCost - marketCost;
-            const savingsPercent = Math.round(((totalPremium - marketPremium) / totalPremium) * 100);
-            
-            // Store results
-            calculationResults = {
-                municipality,
-                employees,
-                totalPremium,
-                marketPremium,
-                aimCost,
-                marketCost,
-                savings,
-                savingsPercent
-            };
-            
-            // Display results
-            document.getElementById('current-cost').textContent = '$' + aimCost.toLocaleString();
-            document.getElementById('market-cost').textContent = '$' + marketCost.toLocaleString();
-            document.getElementById('savings-amount').textContent = '$' + savings.toLocaleString();
-            document.getElementById('savings-percent').textContent = savingsPercent + '% reduction';
-            document.getElementById('recommendation').textContent = 
-                `Based on Indiana market data, exploring competitive alternatives could save ${municipality} approximately $${savings.toLocaleString()} annually. That's $${Math.round(savings/12).toLocaleString()} every month!`;
-            
-            document.getElementById('calc-results').classList.remove('hidden');
-        }
-        
-        function downloadReport() {
-            const r = calculationResults;
-            const reportContent = `AIM TRUST COMPARISON REPORT
-${r.municipality}
+// Export utility functions
+const downloadPDF = (results) => {
+  const reportContent = `
+AIM TRUST COMPARISON REPORT
+${results.municipality}
 Generated: ${new Date().toLocaleDateString()}
 
 CURRENT SITUATION:
-• Current Annual Cost: $${r.aimCost.toLocaleString()}/year
-• Cost per employee: $${r.totalPremium}/month
+• Current AIM Cost: $${results.aimCost.toLocaleString()}/year
+• Cost per employee: $${results.totalPremium}/month
 
 MARKET ALTERNATIVE:
-• Estimated Market Cost: $${r.marketCost.toLocaleString()}/year  
-• Cost per employee: $${r.marketPremium}/month
+• Estimated Market Cost: $${results.marketCost.toLocaleString()}/year
+• Cost per employee: $${results.marketPremium}/month
 
 POTENTIAL SAVINGS:
-• Annual Savings: $${r.savings.toLocaleString()}
-• Percentage Reduction: ${r.savingsPercent}%
+• Annual Savings: $${results.savings.toLocaleString()}
+• Monthly Savings: $${results.monthlySavings.toLocaleString()}
+• Percentage Reduction: ${results.savingsPercent}%
+
+RECOMMENDATION:
+${results.recommendation}
 
 Generated by Mark Benefits
-317-516-8938 | info@mark-benefits.com`;
-            
-            const blob = new Blob([reportContent], { type: 'text/plain' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = r.municipality.replace(/\s+/g, '-') + '-Analysis.txt';
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            URL.revokeObjectURL(url);
-        }
+info@mark-benefits.com | 317-516-8938
+  `;
 
-        // Budget Forecast
-        function generateForecast() {
-            const currentCost = parseFloat(document.getElementById('forecast-cost').value) || 1000;
-            const employees = parseInt(document.getElementById('forecast-employees').value) || 500;
-            const inflationRate = parseFloat(document.getElementById('forecast-inflation').value) / 100 || 0.05;
-            const years = parseInt(document.getElementById('forecast-years').value) || 5;
-            
-            let cumulativeSavings = 0;
-            let tableHTML = '';
-            
-            for (let year = 1; year <= years; year++) {
-                const inflatedCost = currentCost * Math.pow(1 + inflationRate, year);
-                const totalCost = Math.round(inflatedCost * employees * 12);
-                const marketCost = Math.round(totalCost * 0.87);
-                const annualSavings = totalCost - marketCost;
-                cumulativeSavings += annualSavings;
-                
-                tableHTML += `
-                    <tr class="border-b hover:bg-gray-50">
-                        <td class="py-3 px-4">${new Date().getFullYear() + year}</td>
-                        <td class="text-right py-3 px-4">$${totalCost.toLocaleString()}</td>
-                        <td class="text-right py-3 px-4 text-blue-600">$${marketCost.toLocaleString()}</td>
-                        <td class="text-right py-3 px-4 text-green-600">$${annualSavings.toLocaleString()}</td>
-                        <td class="text-right py-3 px-4 font-semibold text-green-700">$${Math.round(cumulativeSavings).toLocaleString()}</td>
-                    </tr>
-                `;
-            }
-            
-            document.getElementById('total-savings').textContent = '$' + Math.round(cumulativeSavings).toLocaleString();
-            document.getElementById('forecast-table').innerHTML = tableHTML;
-            document.getElementById('forecast-results').classList.remove('hidden');
-        }
+  const blob = new Blob([reportContent], { type: 'text/plain' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `${results.municipality.replace(/\s+/g, '-')}-AIM-Analysis.txt`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+};
 
-        // RFP Generator
-        function generateRFP() {
-            const municipality = document.getElementById('rfp-municipality').value || '[Municipality Name]';
-            const employees = document.getElementById('rfp-employees').value || '[Number]';
-            const carrier = document.getElementById('rfp-carrier').value || '[Current Carrier]';
-            const dueDate = document.getElementById('rfp-due-date').value || '[Date]';
-            const effectiveDate = document.getElementById('rfp-effective-date').value || '[Date]';
-            const contactName = document.getElementById('rfp-contact-name').value || '[Name]';
-            const contactEmail = document.getElementById('rfp-contact-email').value || '[Email]';
-            
-            const rfpContent = `REQUEST FOR PROPOSAL - Employee Group Health Insurance Benefits
-${municipality}
+const emailReport = (results) => {
+  const subject = encodeURIComponent(`AIM Trust Analysis - ${results.municipality}`);
+  const body = encodeURIComponent(`Hi,
 
-SUBMISSION DEADLINE: ${dueDate}
-EFFECTIVE DATE: ${effectiveDate}
+I've completed an analysis of our current AIM Trust costs vs. market alternatives.
 
-SECTION 1: MUNICIPALITY INFORMATION
-Municipality: ${municipality}
-Number of Eligible Employees: ${employees}
-Current Carrier: ${carrier}
+KEY FINDINGS:
+• Current Annual Cost: $${results.aimCost.toLocaleString()}
+• Estimated Market Cost: $${results.marketCost.toLocaleString()}
+• Potential Annual Savings: $${results.savings.toLocaleString()} (${results.savingsPercent}% reduction)
 
-Contact Person: ${contactName}
-Email: ${contactEmail}
+${results.recommendation}
 
-SECTION 2: SCOPE OF SERVICES
-The municipality is seeking proposals from qualified insurance carriers and third-party 
-administrators to provide comprehensive group health insurance coverage for eligible 
-employees and their dependents.
+Let's schedule a time to discuss this opportunity.
 
-SECTION 3: COVERAGE REQUIREMENTS
-Required Coverage Types:
-- Medical Insurance (PPO and/or HDHP options)
-- Prescription Drug Coverage
-- Dental Insurance
-- Vision Insurance
-- Life Insurance and AD&D
-- Short-term and Long-term Disability
+Best regards`);
 
-SECTION 4: PROPOSAL REQUIREMENTS
-Respondents must provide:
-1. Company background and qualifications
-2. Proposed plan designs (minimum 2 medical options)
-3. Premium rates by tier (Employee, Employee+Spouse, Employee+Child(ren), Family)
-4. Network information and provider access
-5. Implementation timeline and support services
-6. Claims processing and customer service procedures
-7. Wellness program offerings
-8. Technology platforms and member portals
-9. Reporting capabilities
-10. References from similar-sized municipal clients
+  const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=info@mark-benefits.com&su=${subject}&body=${body}`;
+  const mailtoUrl = `mailto:info@mark-benefits.com?subject=${subject}&body=${body}`;
+  
+  const win = window.open(gmailUrl, '_blank');
+  if (!win) {
+    window.location.href = mailtoUrl;
+  }
+};
 
-SECTION 5: EVALUATION CRITERIA
-Proposals will be evaluated based on:
-- Cost competitiveness (40%)
-- Plan design and benefit quality (25%)
-- Network adequacy and provider access (15%)
-- Service capabilities and technology (10%)
-- Implementation support (5%)
-- References and experience with municipalities (5%)
+const scheduleWebinarMeeting = (results) => {
+  const title = encodeURIComponent(`Benefits Review: AIM Trust Analysis - ${results.municipality}`);
+  const details = encodeURIComponent(`Discuss potential savings of $${results.savings.toLocaleString()}/year by transitioning from AIM Trust to market alternatives.
 
-SECTION 6: SUBMISSION INSTRUCTIONS
-Submit proposals electronically to: ${contactEmail}
-Deadline: ${dueDate} by 5:00 PM EST
+Key Discussion Points:
+• Current costs vs. market rates
+• Implementation timeline
+• Employee communication strategy
+• Plan design options`);
+  
+  const startDate = new Date();
+  startDate.setDate(startDate.getDate() + 7);
+  const endDate = new Date(startDate);
+  endDate.setHours(endDate.getHours() + 1);
+  
+  const formatDate = (date) => {
+    return date.toISOString().replace(/-|:|\.\d+/g, '');
+  };
+  
+  const googleCalUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&details=${details}&dates=${formatDate(startDate)}/${formatDate(endDate)}`;
+  const outlookCalUrl = `https://outlook.office.com/calendar/0/deeplink/compose?subject=${title}&body=${details}&startdt=${startDate.toISOString()}&enddt=${endDate.toISOString()}`;
+  
+  const useGoogle = window.confirm('Create event in Google Calendar? (Click Cancel for Outlook)');
+  window.open(useGoogle ? googleCalUrl : outlookCalUrl, '_blank');
+};
 
-For questions, contact: ${contactName} | ${contactEmail}
+const MarkBenefitsWebsite = () => {
+  const [currentPage, setCurrentPage] = useState('home');
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [chatOpen, setChatOpen] = useState(false);
 
-Generated by Mark Benefits
-317-516-8938 | info@mark-benefits.com`;
-            
-            const blob = new Blob([rfpContent], { type: 'text/plain' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = municipality.replace(/\s+/g, '-') + '-Benefits-RFP.txt';
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            URL.revokeObjectURL(url);
-        }
+  const mainPages = [
+    { id: 'home', name: 'Home', icon: Home },
+    { id: 'about', name: 'About', icon: Users },
+    { id: 'services', name: 'Services', icon: Briefcase },
+    { id: 'tools', name: 'Municipal Tools', icon: Calculator },
+    { id: 'contact', name: 'Contact', icon: Phone },
+  ];
 
-        // Legislative Tracker
-        let allBills = [];
-        
-        async function fetchLegislation() {
-            const loadingEl = document.getElementById('leg-loading');
-            const errorEl = document.getElementById('leg-error');
-            const resultsEl = document.getElementById('leg-results');
-            const refreshBtn = document.getElementById('refresh-btn');
-            
-            loadingEl.classList.remove('hidden');
-            errorEl.classList.add('hidden');
-            resultsEl.innerHTML = '';
-            refreshBtn.disabled = true;
-            refreshBtn.textContent = 'Loading...';
-            
-            try {
-                const apiKey = 'e57a5dab94fd5d93f2f10aaf33e24a07';
-                const state = 'IN';
-                
-                // Try multiple CORS proxies for reliability
-                const corsProxies = [
-                    'https://corsproxy.io/?',
-                    'https://api.allorigins.win/raw?url=',
-                    'https://cors-anywhere.herokuapp.com/'
-                ];
-                
-                let sessionData = null;
-                let proxyIndex = 0;
-                
-                // Try each proxy until one works
-                while (proxyIndex < corsProxies.length && !sessionData) {
-                    try {
-                        const corsProxy = corsProxies[proxyIndex];
-                        const sessionUrl = `https://api.legiscan.com/?key=${apiKey}&op=getSessionList&state=${state}`;
-                        const fullUrl = corsProxy + encodeURIComponent(sessionUrl);
-                        
-                        const sessionResponse = await fetch(fullUrl, { 
-                            method: 'GET',
-                            headers: { 'Accept': 'application/json' }
-                        });
-                        
-                        if (sessionResponse.ok) {
-                            sessionData = await sessionResponse.json();
-                            if (sessionData && sessionData.status === 'OK') {
-                                break;
-                            }
-                        }
-                    } catch (e) {
-                        console.log(`Proxy ${proxyIndex} failed, trying next...`);
-                    }
-                    proxyIndex++;
-                }
-                
-                if (!sessionData || sessionData.status !== 'OK') {
-                    throw new Error('All proxies failed');
-                }
-                
-                if (sessionData.status === 'OK' && sessionData.sessions) {
-                    const sessions = Object.values(sessionData.sessions);
-                    const currentYear = new Date().getFullYear();
-                    const currentSession = sessions.find(s => s.year_start === currentYear) || sessions[0];
-                    
-                    if (currentSession) {
-                        // Get bills using the working proxy
-                        const corsProxy = corsProxies[proxyIndex];
-                        const billsUrl = `https://api.legiscan.com/?key=${apiKey}&op=getMasterList&state=${state}&id=${currentSession.session_id}`;
-                        const billsResponse = await fetch(corsProxy + encodeURIComponent(billsUrl));
-                        const billsData = await billsResponse.json();
-                        
-                        if (billsData.status === 'OK' && billsData.masterlist) {
-                            allBills = Object.values(billsData.masterlist)
-                                .filter(bill => {
-                                    if (!bill || typeof bill !== 'object') return false;
-                                    const title = (bill.title || '').toLowerCase();
-                                    const desc = (bill.description || '').toLowerCase();
-                                    return title.includes('health') || title.includes('insurance') || 
-                                           title.includes('benefit') || title.includes('medicare') ||
-                                           title.includes('employee') || desc.includes('health') ||
-                                           desc.includes('insurance') || desc.includes('benefit');
-                                })
-                                .slice(0, 25);
-                            
-                            displayBills(allBills);
-                        } else {
-                            throw new Error('No bills found');
-                        }
-                    }
-                }
-            } catch (error) {
-                console.error('API Error:', error);
-                errorEl.classList.remove('hidden');
-                
-                // Show fallback option
-                resultsEl.innerHTML = `
-                    <div class="bg-blue-50 border-2 border-blue-300 rounded-lg p-8 text-center">
-                        <div class="text-5xl mb-4">📧</div>
-                        <h4 class="text-xl font-bold text-blue-900 mb-3">Legislative Updates by Email</h4>
-                        <p class="text-gray-700 mb-6">
-                            We're experiencing technical difficulties loading legislation data. 
-                            We can email you the latest Indiana benefits legislation updates instead.
-                        </p>
-                        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                            <a href="tel:317-516-8938" class="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700">
-                                📞 Call for Updates
-                            </a>
-                            <a href="mailto:info@mark-benefits.com?subject=Request%20Legislative%20Updates&body=Please%20send%20me%20the%20latest%20Indiana%20benefits%20legislation%20updates." 
-                               class="bg-white border-2 border-blue-600 text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-blue-50">
-                                ✉️ Email Request
-                            </a>
-                        </div>
-                    </div>
-                `;
-            } finally {
-                loadingEl.classList.add('hidden');
-                refreshBtn.disabled = false;
-                refreshBtn.textContent = 'Refresh';
-            }
-        }
-        
-        function displayBills(bills) {
-            const resultsEl = document.getElementById('leg-results');
-            
-            if (bills.length === 0) {
-                resultsEl.innerHTML = '<p class="text-center py-8 text-gray-500">No legislation found matching your search.</p>';
-                return;
-            }
-            
-            resultsEl.innerHTML = `<p class="text-sm text-gray-600 mb-4">Showing ${bills.length} benefits-related bills</p>` +
-                bills.map(bill => `
-                <div class="border-2 border-gray-200 rounded-lg p-6 hover:border-blue-300 hover:shadow-md transition">
-                    <div class="flex items-start justify-between">
-                        <div class="flex-1">
-                            <div class="flex items-center space-x-2 mb-3">
-                                <span class="bg-blue-600 text-white text-sm font-bold px-3 py-1 rounded">
-                                    ${bill.bill_number || 'N/A'}
-                                </span>
-                                ${bill.status ? `<span class="text-xs font-semibold px-2 py-1 rounded bg-gray-100 text-gray-800">
-                                    ${bill.status_desc || 'Status ' + bill.status}
-                                </span>` : ''}
-                            </div>
-                            <h4 class="font-bold text-gray-900 mb-2 text-lg">${bill.title || 'Untitled Bill'}</h4>
-                            ${bill.description ? `<p class="text-sm text-gray-600 mb-3 leading-relaxed">${bill.description}</p>` : ''}
-                            ${bill.last_action_date ? `
-                                <div class="text-xs text-gray-500">
-                                    Last Action: ${new Date(bill.last_action_date).toLocaleDateString()}
-                                </div>
-                            ` : ''}
-                        </div>
-                        ${bill.url ? `
-                            <a href="${bill.url}" target="_blank" rel="noopener noreferrer" 
-                               class="ml-4 text-blue-600 hover:text-blue-700 p-2 hover:bg-blue-50 rounded transition text-2xl">
-                                →
-                            </a>
-                        ` : ''}
-                    </div>
+  return (
+    <div className="min-h-screen bg-white">
+      {/* Top Bar */}
+      <div className="bg-gray-900 text-white py-2 px-4">
+        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center text-sm">
+          <div className="flex items-center space-x-4 mb-2 sm:mb-0">
+            <a href="mailto:info@mark-benefits.com" className="hover:text-blue-300 transition-colors flex items-center space-x-1">
+              <Mail className="w-4 h-4" />
+              <span>info@mark-benefits.com</span>
+            </a>
+          </div>
+          <div className="flex items-center space-x-4">
+            <a href="tel:317-516-8938" className="hover:text-blue-300 transition-colors flex items-center space-x-1">
+              <Phone className="w-4 h-4" />
+              <span>317-516-8938</span>
+            </a>
+            <span className="text-gray-400">|</span>
+            <span className="text-gray-300">Fishers, Indiana</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Main Header */}
+      <header className="bg-white shadow-sm border-b sticky top-0 z-30">
+        <div className="max-w-7xl mx-auto px-4 py-4">
+          <div className="flex justify-between items-center">
+            <div 
+              className="flex items-center space-x-3 cursor-pointer" 
+              onClick={() => { setCurrentPage('home'); setMobileMenuOpen(false); }}
+            >
+              <div className="bg-gradient-to-br from-blue-600 to-blue-800 rounded-lg p-3 shadow-md">
+                <div className="text-center">
+                  <div className="text-xl font-black text-white tracking-wide">MARK</div>
+                  <div className="text-[9px] font-semibold text-blue-200 tracking-wider">BENEFITS</div>
                 </div>
-            `).join('');
-        }
+              </div>
+              <div className="hidden md:block">
+                <h1 className="text-xl font-bold text-gray-900">Mark Benefits</h1>
+                <p className="text-gray-600 text-xs">From Hire to Retire</p>
+              </div>
+            </div>
+            
+            {/* Desktop Navigation */}
+            <nav className="hidden lg:flex space-x-1">
+              {mainPages.map((page) => {
+                const Icon = page.icon;
+                return (
+                  <button
+                    key={page.id}
+                    onClick={() => setCurrentPage(page.id)}
+                    className={`flex items-center space-x-2 px-5 py-2 rounded transition-all ${
+                      currentPage === page.id
+                        ? 'text-blue-600 font-semibold'
+                        : 'text-gray-700 hover:text-blue-600'
+                    }`}
+                  >
+                    <Icon className="w-4 h-4" />
+                    <span>{page.name}</span>
+                  </button>
+                );
+              })}
+              <a 
+                href="tel:317-516-8938"
+                className="ml-4 bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition-colors font-semibold"
+              >
+                Get Started
+              </a>
+            </nav>
+
+            {/* Mobile Menu Button */}
+            <button 
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)} 
+              className="lg:hidden text-gray-900"
+            >
+              {mobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+            </button>
+          </div>
+
+          {/* Mobile Navigation */}
+          {mobileMenuOpen && (
+            <nav className="lg:hidden mt-4 space-y-2 pb-4">
+              {mainPages.map((page) => {
+                const Icon = page.icon;
+                return (
+                  <button
+                    key={page.id}
+                    onClick={() => { setCurrentPage(page.id); setMobileMenuOpen(false); }}
+                    className={`w-full flex items-center space-x-3 px-4 py-3 rounded transition-all ${
+                      currentPage === page.id
+                        ? 'bg-blue-50 text-blue-600 font-semibold'
+                        : 'text-gray-700 hover:bg-gray-50'
+                    }`}
+                  >
+                    <Icon className="w-5 h-5" />
+                    <span>{page.name}</span>
+                  </button>
+                );
+              })}
+              <a 
+                href="tel:317-516-8938"
+                className="w-full flex items-center justify-center space-x-2 bg-blue-600 text-white px-4 py-3 rounded font-semibold"
+              >
+                <Phone className="w-5 h-5" />
+                <span>Call Now</span>
+              </a>
+            </nav>
+          )}
+        </div>
+      </header>
+
+      {/* Page Content */}
+      <main>
+        {currentPage === 'home' && <HomePage setCurrentPage={setCurrentPage} />}
+        {currentPage === 'about' && <AboutPage />}
+        {currentPage === 'services' && <ServicesPage setCurrentPage={setCurrentPage} />}
+        {currentPage === 'tools' && <MunicipalToolsPage />}
+        {currentPage === 'contact' && <ContactPage />}
+      </main>
+
+      {/* Floating Chat Button */}
+      {!chatOpen && (
+        <button
+          onClick={() => setChatOpen(true)}
+          className="fixed bottom-6 right-6 bg-blue-600 text-white p-4 rounded-full shadow-2xl hover:bg-blue-700 transition-all transform hover:scale-110 z-40 group"
+          aria-label="Open chat with Mark"
+        >
+          <MessageSquare className="w-6 h-6" />
+          <span className="absolute -top-1 -right-1 bg-orange-500 text-white text-xs font-bold px-2 py-1 rounded-full">
+            AI
+          </span>
+          <span className="absolute bottom-full right-0 mb-2 px-3 py-1 bg-gray-900 text-white text-sm rounded-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+            Ask Mark anything!
+          </span>
+        </button>
+      )}
+
+      {/* Chat Slide-in Panel */}
+      {chatOpen && (
+        <>
+          <div 
+            className="fixed inset-0 bg-black bg-opacity-50 z-40 animate-fade-in"
+            onClick={() => setChatOpen(false)}
+          />
+          
+          <div className="fixed top-0 right-0 h-full w-full md:w-[500px] bg-white shadow-2xl z-50 flex flex-col animate-slide-in">
+            <div className="bg-gradient-to-r from-blue-600 to-blue-800 text-white p-6 flex items-center justify-between">
+              <div className="flex items-center space-x-3">
+                <div className="bg-white rounded-lg p-2">
+                  <div className="text-center">
+                    <div className="text-lg font-black text-blue-600">MARK</div>
+                    <div className="text-[8px] font-semibold text-blue-400">BENEFITS</div>
+                  </div>
+                </div>
+                <div>
+                  <h2 className="text-xl font-bold">Ask Mark Anything</h2>
+                  <p className="text-sm text-blue-200">Your benefits expert</p>
+                </div>
+              </div>
+              <button 
+                onClick={() => setChatOpen(false)}
+                className="text-white hover:text-gray-200 transition-colors"
+              >
+                <X className="w-6 h-6" />
+              </button>
+            </div>
+
+            <div className="flex-1 overflow-hidden">
+              <FloatingMarkChatbot onClose={() => setChatOpen(false)} />
+            </div>
+          </div>
+        </>
+      )}
+
+      {/* Footer */}
+      <footer className="bg-gray-900 text-white mt-20">
+        <div className="max-w-7xl mx-auto px-4 py-16">
+          <div className="grid md:grid-cols-4 gap-12 mb-12">
+            <div>
+              <div className="bg-white rounded-lg p-2 inline-block mb-4">
+                <div className="text-center">
+                  <div className="text-xl font-black text-blue-600">MARK</div>
+                  <div className="text-[9px] font-semibold text-gray-600">BENEFITS</div>
+                </div>
+              </div>
+              <p className="text-gray-400 text-sm leading-relaxed">
+                Independent benefits consulting serving Indiana municipalities, individuals, and small businesses since 2010.
+              </p>
+            </div>
+            <div>
+              <h3 className="font-bold mb-4 text-lg">Services</h3>
+              <ul className="space-y-3 text-gray-400 text-sm">
+                <li><button onClick={() => setCurrentPage('services')} className="hover:text-white transition-colors">Municipal Guidance</button></li>
+                <li><button onClick={() => setCurrentPage('services')} className="hover:text-white transition-colors">Medicare Solutions</button></li>
+                <li><button onClick={() => setCurrentPage('services')} className="hover:text-white transition-colors">Employee Benefits</button></li>
+                <li><button onClick={() => setCurrentPage('tools')} className="hover:text-white transition-colors">Municipal Tools</button></li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="font-bold mb-4 text-lg">Contact</h3>
+              <ul className="space-y-3 text-gray-400 text-sm">
+                <li className="flex items-start space-x-2">
+                  <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0" />
+                  <span>Fishers, Indiana</span>
+                </li>
+                <li className="flex items-start space-x-2">
+                  <Phone className="w-4 h-4 mt-0.5 flex-shrink-0" />
+                  <a href="tel:317-516-8938" className="hover:text-white transition-colors">317-516-8938</a>
+                </li>
+                <li className="flex items-start space-x-2">
+                  <Mail className="w-4 h-4 mt-0.5 flex-shrink-0" />
+                  <a href="mailto:info@mark-benefits.com" className="hover:text-white transition-colors">info@mark-benefits.com</a>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="font-bold mb-4 text-lg">Office Hours</h3>
+              <p className="text-gray-400 text-sm mb-4">
+                Mon - Fri: 9:00 AM - 5:00 PM<br />
+                Saturday: By Appointment<br />
+                Sunday: Closed
+              </p>
+              <button 
+                onClick={() => document.querySelector('[aria-label="Open chat with Mark"]')?.click()}
+                className="bg-blue-600 text-white px-4 py-2 rounded text-sm font-semibold hover:bg-blue-700 transition-colors"
+              >
+                Chat with Mark AI
+              </button>
+            </div>
+          </div>
+          <div className="border-t border-gray-800 pt-8 text-center">
+            <p className="text-gray-400 text-sm">
+              &copy; 2026 Mark Benefits Group. All rights reserved. | Licensed in Indiana
+            </p>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+};
+
+// HOME PAGE
+const HomePage = ({ setCurrentPage }) => {
+  return (
+    <div>
+      {/* Hero Section */}
+      <section className="relative bg-gradient-to-r from-blue-900 to-blue-700 text-white">
+        <div className="max-w-7xl mx-auto px-4 py-24 md:py-32">
+          <div className="max-w-3xl">
+            <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
+              Smart Benefits Solutions From Hire to Retire
+            </h1>
+            <p className="text-xl md:text-2xl mb-8 text-blue-100 leading-relaxed">
+              Independent benefits consulting for Indiana municipalities, Medicare beneficiaries, and small businesses. Data-driven insights. Personalized service.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4">
+              <a 
+                href="tel:317-516-8938"
+                className="inline-flex items-center justify-center space-x-2 bg-white text-blue-900 px-8 py-4 rounded font-bold text-lg hover:bg-gray-100 transition-colors"
+              >
+                <Phone className="w-5 h-5" />
+                <span>317-516-8938</span>
+              </a>
+              <button 
+                onClick={() => setCurrentPage('tools')}
+                className="inline-flex items-center justify-center space-x-2 bg-transparent border-2 border-white text-white px-8 py-4 rounded font-bold text-lg hover:bg-white hover:text-blue-900 transition-colors"
+              >
+                <Calculator className="w-5 h-5" />
+                <span>Municipal Tools</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-white to-transparent"></div>
+      </section>
+
+      {/* Stats Section */}
+      <section className="py-16 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="grid md:grid-cols-4 gap-8 text-center">
+            <div>
+              <div className="text-5xl font-bold text-blue-600 mb-2">290+</div>
+              <div className="text-gray-600 font-medium">Indiana Municipalities Served</div>
+            </div>
+            <div>
+              <div className="text-5xl font-bold text-blue-600 mb-2">15+</div>
+              <div className="text-gray-600 font-medium">Years of Experience</div>
+            </div>
+            <div>
+              <div className="text-5xl font-bold text-blue-600 mb-2">100%</div>
+              <div className="text-gray-600 font-medium">Independent Consulting</div>
+            </div>
+            <div>
+              <div className="text-5xl font-bold text-blue-600 mb-2">24/7</div>
+              <div className="text-gray-600 font-medium">AI Support Available</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Services Overview */}
+      <section className="py-20">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">Our Services</h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              Comprehensive benefits solutions tailored to your unique needs
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+              <div className="h-48 bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center">
+                <Building2 className="w-20 h-20 text-white" />
+              </div>
+              <div className="p-8">
+                <h3 className="text-2xl font-bold mb-4 text-gray-900">Municipal Guidance</h3>
+                <p className="text-gray-600 mb-6 leading-relaxed">
+                  Optimize benefits costs for cities, towns, and counties across Indiana. Data-driven analysis and RFP support.
+                </p>
+                <ul className="space-y-3 mb-6">
+                  <li className="flex items-start text-sm text-gray-700">
+                    <CheckCircle className="w-5 h-5 text-green-500 mr-2 flex-shrink-0 mt-0.5" />
+                    <span>AIM Trust comparison analysis</span>
+                  </li>
+                  <li className="flex items-start text-sm text-gray-700">
+                    <CheckCircle className="w-5 h-5 text-green-500 mr-2 flex-shrink-0 mt-0.5" />
+                    <span>Cost forecasting & budgeting tools</span>
+                  </li>
+                  <li className="flex items-start text-sm text-gray-700">
+                    <CheckCircle className="w-5 h-5 text-green-500 mr-2 flex-shrink-0 mt-0.5" />
+                    <span>Professional RFP generation</span>
+                  </li>
+                </ul>
+                <button 
+                  onClick={() => setCurrentPage('services')}
+                  className="text-blue-600 font-semibold flex items-center space-x-2 hover:text-blue-700 transition-colors"
+                >
+                  <span>Learn More</span>
+                  <ArrowRight className="w-4 h-4" />
+                </button>
+              </div>
+            </div>
+
+            <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+              <div className="h-48 bg-gradient-to-br from-red-500 to-pink-600 flex items-center justify-center">
+                <Heart className="w-20 h-20 text-white" />
+              </div>
+              <div className="p-8">
+                <h3 className="text-2xl font-bold mb-4 text-gray-900">Medicare Solutions</h3>
+                <p className="text-gray-600 mb-6 leading-relaxed">
+                  Expert guidance through Medicare choices. Find the right Medigap plan and maximize your benefits.
+                </p>
+                <ul className="space-y-3 mb-6">
+                  <li className="flex items-start text-sm text-gray-700">
+                    <CheckCircle className="w-5 h-5 text-green-500 mr-2 flex-shrink-0 mt-0.5" />
+                    <span>Medigap plan comparison</span>
+                  </li>
+                  <li className="flex items-start text-sm text-gray-700">
+                    <CheckCircle className="w-5 h-5 text-green-500 mr-2 flex-shrink-0 mt-0.5" />
+                    <span>Part D prescription analysis</span>
+                  </li>
+                  <li className="flex items-start text-sm text-gray-700">
+                    <CheckCircle className="w-5 h-5 text-green-500 mr-2 flex-shrink-0 mt-0.5" />
+                    <span>Turning 65 enrollment support</span>
+                  </li>
+                </ul>
+                <button 
+                  onClick={() => setCurrentPage('services')}
+                  className="text-blue-600 font-semibold flex items-center space-x-2 hover:text-blue-700 transition-colors"
+                >
+                  <span>Learn More</span>
+                  <ArrowRight className="w-4 h-4" />
+                </button>
+              </div>
+            </div>
+
+            <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+              <div className="h-48 bg-gradient-to-br from-green-500 to-teal-600 flex items-center justify-center">
+                <ShoppingBag className="w-20 h-20 text-white" />
+              </div>
+              <div className="p-8">
+                <h3 className="text-2xl font-bold mb-4 text-gray-900">Employee Benefits</h3>
+                <p className="text-gray-600 mb-6 leading-relaxed">
+                  Voluntary benefits for small businesses. Zero-cost employer programs that employees love.
+                </p>
+                <ul className="space-y-3 mb-6">
+                  <li className="flex items-start text-sm text-gray-700">
+                    <CheckCircle className="w-5 h-5 text-green-500 mr-2 flex-shrink-0 mt-0.5" />
+                    <span>Voluntary life & disability insurance</span>
+                  </li>
+                  <li className="flex items-start text-sm text-gray-700">
+                    <CheckCircle className="w-5 h-5 text-green-500 mr-2 flex-shrink-0 mt-0.5" />
+                    <span>Accident & critical illness coverage</span>
+                  </li>
+                  <li className="flex items-start text-sm text-gray-700">
+                    <CheckCircle className="w-5 h-5 text-green-500 mr-2 flex-shrink-0 mt-0.5" />
+                    <span>100% employee-paid options</span>
+                  </li>
+                </ul>
+                <button 
+                  onClick={() => setCurrentPage('services')}
+                  className="text-blue-600 font-semibold flex items-center space-x-2 hover:text-blue-700 transition-colors"
+                >
+                  <span>Learn More</span>
+                  <ArrowRight className="w-4 h-4" />
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Why Choose Us */}
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">Why Choose Mark Benefits Group?</h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              Independent expertise you can trust
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="text-center">
+              <div className="bg-blue-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Shield className="w-10 h-10 text-blue-600" />
+              </div>
+              <h3 className="font-bold text-lg mb-2">Independent</h3>
+              <p className="text-gray-600 text-sm">
+                We work for you, not insurance carriers. Our recommendations are unbiased.
+              </p>
+            </div>
+
+            <div className="text-center">
+              <div className="bg-green-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
+                <BarChart3 className="w-10 h-10 text-green-600" />
+              </div>
+              <h3 className="font-bold text-lg mb-2">Data-Driven</h3>
+              <p className="text-gray-600 text-sm">
+                Proprietary tools and Indiana market data for informed decisions.
+              </p>
+            </div>
+
+            <div className="text-center">
+              <div className="bg-indigo-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
+                <MapPin className="w-10 h-10 text-indigo-600" />
+              </div>
+              <h3 className="font-bold text-lg mb-2">Local Expertise</h3>
+              <p className="text-gray-600 text-sm">
+                Deep knowledge of Indiana's municipal and insurance markets.
+              </p>
+            </div>
+
+            <div className="text-center">
+              <div className="bg-orange-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Users className="w-10 h-10 text-orange-600" />
+              </div>
+              <h3 className="font-bold text-lg mb-2">Personal Service</h3>
+              <p className="text-gray-600 text-sm">
+                Direct access to experienced consultants who know your needs.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* AI Assistant CTA */}
+      <section className="py-16 bg-gradient-to-r from-blue-600 to-indigo-700">
+        <div className="max-w-4xl mx-auto px-4 text-center text-white">
+          <MessageSquare className="w-16 h-16 mx-auto mb-6" />
+          <h2 className="text-4xl font-bold mb-4">Ask Mark AI Anything</h2>
+          <p className="text-xl mb-8 text-blue-100">
+            Get instant answers about benefits costs, Medicare options, RFP processes, and more. Our AI assistant is available 24/7.
+          </p>
+          <button
+            onClick={() => document.querySelector('[aria-label="Open chat with Mark"]')?.click()}
+            className="bg-white text-blue-600 px-8 py-4 rounded font-bold text-lg hover:bg-gray-100 transition-colors inline-flex items-center space-x-2"
+          >
+            <MessageSquare className="w-5 h-5" />
+            <span>Start Chatting Now</span>
+          </button>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-20">
+        <div className="max-w-4xl mx-auto px-4 text-center">
+          <h2 className="text-4xl font-bold text-gray-900 mb-6">
+            Ready to Optimize Your Benefits?
+          </h2>
+          <p className="text-xl text-gray-600 mb-8 leading-relaxed">
+            Whether you're a municipality exploring alternatives, turning 65 and navigating Medicare, or a small business looking to offer better benefits—we're here to help.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <a 
+              href="tel:317-516-8938" 
+              className="inline-flex items-center justify-center bg-blue-600 text-white px-8 py-4 rounded font-bold text-lg hover:bg-blue-700 transition-colors"
+            >
+              <Phone className="w-5 h-5 mr-2" />
+              Call 317-516-8938
+            </a>
+            <button 
+              onClick={() => setCurrentPage('contact')}
+              className="inline-flex items-center justify-center bg-white border-2 border-blue-600 text-blue-600 px-8 py-4 rounded font-bold text-lg hover:bg-blue-50 transition-colors"
+            >
+              <Mail className="w-5 h-5 mr-2" />
+              Contact Us
+            </button>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+};
+
+// ABOUT PAGE
+const AboutPage = () => {
+  return (
+    <div>
+      {/* Hero */}
+      <section className="bg-gradient-to-r from-gray-900 to-gray-800 text-white py-20">
+        <div className="max-w-7xl mx-auto px-4 text-center">
+          <h1 className="text-5xl font-bold mb-4">About Mark Benefits Group</h1>
+          <p className="text-xl text-gray-300">Independent benefits consulting with integrity and expertise</p>
+        </div>
+      </section>
+
+      {/* Story */}
+      <section className="py-20">
+        <div className="max-w-4xl mx-auto px-4">
+          <h2 className="text-3xl font-bold text-gray-900 mb-6">Our Story</h2>
+          <div className="prose prose-lg max-w-none text-gray-700 leading-relaxed space-y-4">
+            <p>
+              Mark Benefits Group was founded with a simple mission: provide independent, data-driven benefits consulting that puts clients first. With over 15 years of experience in Indiana's benefits landscape, we've built our reputation on transparency, expertise, and results.
+            </p>
+            <p>
+              Our founder, Andrew Dezelan, brings a unique background combining over a decade of policy experience at the Indiana State Senate with deep expertise in benefits consulting. This combination allows us to understand both the regulatory environment and the practical challenges municipalities and businesses face.
+            </p>
+            <p>
+              Today, we serve 290+ Indiana municipalities through our proprietary Mark IQ platform, help hundreds of Medicare beneficiaries navigate their options, and support small businesses with zero-cost voluntary benefit programs.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Values */}
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4">
+          <h2 className="text-3xl font-bold text-gray-900 mb-12 text-center">Our Core Values</h2>
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="bg-white p-8 rounded-lg shadow-md">
+              <Shield className="w-12 h-12 text-blue-600 mb-4" />
+              <h3 className="text-xl font-bold mb-3">Independence</h3>
+              <p className="text-gray-600">
+                We're not tied to any insurance carrier. Our recommendations are based solely on what's best for you.
+              </p>
+            </div>
+            <div className="bg-white p-8 rounded-lg shadow-md">
+              <Target className="w-12 h-12 text-blue-600 mb-4" />
+              <h3 className="text-xl font-bold mb-3">Transparency</h3>
+              <p className="text-gray-600">
+                We show you the data, explain our reasoning, and help you make informed decisions.
+              </p>
+            </div>
+            <div className="bg-white p-8 rounded-lg shadow-md">
+              <Award className="w-12 h-12 text-blue-600 mb-4" />
+              <h3 className="text-xl font-bold mb-3">Expertise</h3>
+              <p className="text-gray-600">
+                Deep knowledge of Indiana's benefits landscape combined with cutting-edge technology.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Team */}
+      <section className="py-20">
+        <div className="max-w-7xl mx-auto px-4">
+          <h2 className="text-3xl font-bold text-gray-900 mb-12 text-center">Leadership</h2>
+          <div className="max-w-2xl mx-auto">
+            <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+              <div className="md:flex">
+                <div className="md:w-1/3 bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center p-12">
+                  <div className="bg-white rounded-full p-8">
+                    <Users className="w-24 h-24 text-blue-600" />
+                  </div>
+                </div>
+                <div className="md:w-2/3 p-8">
+                  <h3 className="text-2xl font-bold mb-2">Andrew Dezelan</h3>
+                  <p className="text-blue-600 font-semibold mb-4">Principal, Mark Benefits Group</p>
+                  <p className="text-gray-700 mb-4 leading-relaxed">
+                    Andrew brings over 15 years of experience helping Hoosiers afford health insurance and more than a decade serving as policy director at the Indiana State Senate.
+                  </p>
+                  <p className="text-gray-700 leading-relaxed">
+                    He holds an active Life & Health Insurance License and has built a reputation for combining deep policy knowledge with practical technology solutions for benefits optimization.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="py-20 bg-blue-600 text-white">
+        <div className="max-w-4xl mx-auto px-4 text-center">
+          <h2 className="text-4xl font-bold mb-6">Let's Work Together</h2>
+          <p className="text-xl mb-8 text-blue-100">
+            Experience the difference that independent, expert benefits consulting can make.
+          </p>
+          <a 
+            href="tel:317-516-8938"
+            className="inline-flex items-center bg-white text-blue-600 px-8 py-4 rounded font-bold text-lg hover:bg-gray-100 transition-colors"
+          >
+            <Phone className="w-5 h-5 mr-2" />
+            Call 317-516-8938
+          </a>
+        </div>
+      </section>
+    </div>
+  );
+};
+
+// SERVICES PAGE
+const ServicesPage = ({ setCurrentPage }) => {
+  const [activeService, setActiveService] = useState('municipal');
+
+  return (
+    <div>
+      {/* Hero */}
+      <section className="bg-gradient-to-r from-gray-900 to-gray-800 text-white py-20">
+        <div className="max-w-7xl mx-auto px-4 text-center">
+          <h1 className="text-5xl font-bold mb-4">Our Services</h1>
+          <p className="text-xl text-gray-300">Comprehensive benefits solutions for every stage of life</p>
+        </div>
+      </section>
+
+      {/* Service Tabs */}
+      <section className="py-12 bg-gray-50 sticky top-[73px] z-20 border-b">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="flex flex-col sm:flex-row justify-center space-y-2 sm:space-y-0 sm:space-x-4">
+            <button
+              onClick={() => setActiveService('municipal')}
+              className={`px-6 py-3 rounded font-semibold transition-colors ${
+                activeService === 'municipal'
+                  ? 'bg-blue-600 text-white'
+                  : 'bg-white text-gray-700 hover:bg-gray-100'
+              }`}
+            >
+              Municipal Guidance
+            </button>
+            <button
+              onClick={() => setActiveService('medicare')}
+              className={`px-6 py-3 rounded font-semibold transition-colors ${
+                activeService === 'medicare'
+                  ? 'bg-blue-600 text-white'
+                  : 'bg-white text-gray-700 hover:bg-gray-100'
+              }`}
+            >
+              Medicare Solutions
+            </button>
+            <button
+              onClick={() => setActiveService('employee')}
+              className={`px-6 py-3 rounded font-semibold transition-colors ${
+                activeService === 'employee'
+                  ? 'bg-blue-600 text-white'
+                  : 'bg-white text-gray-700 hover:bg-gray-100'
+              }`}
+            >
+              Employee Benefits
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* Municipal Service */}
+      {activeService === 'municipal' && (
+        <section className="py-20">
+          <div className="max-w-7xl mx-auto px-4">
+            <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
+              <div>
+                <div className="bg-blue-100 w-20 h-20 rounded-lg flex items-center justify-center mb-6">
+                  <Building2 className="w-12 h-12 text-blue-600" />
+                </div>
+                <h2 className="text-4xl font-bold mb-6">Municipal Guidance</h2>
+                <p className="text-xl text-gray-700 mb-6 leading-relaxed">
+                  Optimize benefits costs for Indiana cities, towns, and counties with data-driven analysis and expert RFP support.
+                </p>
+                <a 
+                  href="tel:317-516-8938"
+                  className="inline-flex items-center bg-blue-600 text-white px-6 py-3 rounded font-semibold hover:bg-blue-700 transition-colors"
+                >
+                  <Phone className="w-5 h-5 mr-2" />
+                  Schedule Consultation
+                </a>
+              </div>
+              <div className="bg-gradient-to-br from-blue-500 to-blue-700 rounded-lg p-12 text-white">
+                <h3 className="text-2xl font-bold mb-6">What We Offer:</h3>
+                <ul className="space-y-4">
+                  <li className="flex items-start">
+                    <CheckCircle className="w-6 h-6 mr-3 flex-shrink-0 mt-1" />
+                    <span className="text-lg">AIM Trust comparison analysis with real market data</span>
+                  </li>
+                  <li className="flex items-start">
+                    <CheckCircle className="w-6 h-6 mr-3 flex-shrink-0 mt-1" />
+                    <span className="text-lg">Multi-year cost forecasting and budget planning</span>
+                  </li>
+                  <li className="flex items-start">
+                    <CheckCircle className="w-6 h-6 mr-3 flex-shrink-0 mt-1" />
+                    <span className="text-lg">Professional RFP generation and vendor selection support</span>
+                  </li>
+                  <li className="flex items-start">
+                    <CheckCircle className="w-6 h-6 mr-3 flex-shrink-0 mt-1" />
+                    <span className="text-lg">Enrollment timeline planning and implementation</span>
+                  </li>
+                  <li className="flex items-start">
+                    <CheckCircle className="w-6 h-6 mr-3 flex-shrink-0 mt-1" />
+                    <span className="text-lg">Legislative tracking for Indiana benefits laws</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            {/* Municipal Tools */}
+            <div className="grid md:grid-cols-3 gap-6">
+              <div className="bg-white rounded-lg shadow-md p-6 border-t-4 border-blue-600">
+                <Calculator className="w-10 h-10 text-blue-600 mb-4" />
+                <h3 className="text-xl font-bold mb-3">Cost Calculator</h3>
+                <p className="text-gray-600 mb-4">
+                  Compare your current costs to market alternatives and identify savings opportunities.
+                </p>
+                <button 
+                  onClick={() => setCurrentPage('tools')}
+                  className="text-blue-600 font-semibold hover:text-blue-700"
+                >
+                  Try it now →
+                </button>
+              </div>
+              <div className="bg-white rounded-lg shadow-md p-6 border-t-4 border-blue-600">
+                <TrendingUp className="w-10 h-10 text-blue-600 mb-4" />
+                <h3 className="text-xl font-bold mb-3">Budget Forecast</h3>
+                <p className="text-gray-600 mb-4">
+                  Project multi-year costs with inflation modeling and savings scenarios.
+                </p>
+                <button 
+                  onClick={() => setCurrentPage('tools')}
+                  className="text-blue-600 font-semibold hover:text-blue-700"
+                >
+                  Try it now →
+                </button>
+              </div>
+              <div className="bg-white rounded-lg shadow-md p-6 border-t-4 border-blue-600">
+                <FileText className="w-10 h-10 text-blue-600 mb-4" />
+                <h3 className="text-xl font-bold mb-3">RFP Generator</h3>
+                <p className="text-gray-600 mb-4">
+                  Create professional RFP documents customized for your municipality.
+                </p>
+                <button 
+                  onClick={() => setCurrentPage('tools')}
+                  className="text-blue-600 font-semibold hover:text-blue-700"
+                >
+                  Try it now →
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Medicare Service */}
+      {activeService === 'medicare' && (
+        <section className="py-20">
+          <div className="max-w-7xl mx-auto px-4">
+            <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
+              <div>
+                <div className="bg-red-100 w-20 h-20 rounded-lg flex items-center justify-center mb-6">
+                  <Heart className="w-12 h-12 text-red-600" />
+                </div>
+                <h2 className="text-4xl font-bold mb-6">Medicare Solutions</h2>
+                <p className="text-xl text-gray-700 mb-6 leading-relaxed">
+                  Expert guidance through Medicare choices. Find the right Medigap plan, understand Part D, and maximize your benefits.
+                </p>
+                <a 
+                  href="tel:317-516-8938"
+                  className="inline-flex items-center bg-red-600 text-white px-6 py-3 rounded font-semibold hover:bg-red-700 transition-colors"
+                >
+                  <Phone className="w-5 h-5 mr-2" />
+                  Book Consultation
+                </a>
+              </div>
+              <div className="bg-gradient-to-br from-red-500 to-pink-600 rounded-lg p-12 text-white">
+                <h3 className="text-2xl font-bold mb-6">We Help With:</h3>
+                <ul className="space-y-4">
+                  <li className="flex items-start">
+                    <CheckCircle className="w-6 h-6 mr-3 flex-shrink-0 mt-1" />
+                    <span className="text-lg">Understanding Medicare Parts A, B, C, and D</span>
+                  </li>
+                  <li className="flex items-start">
+                    <CheckCircle className="w-6 h-6 mr-3 flex-shrink-0 mt-1" />
+                    <span className="text-lg">Medigap Plan G comparison and enrollment</span>
+                  </li>
+                  <li className="flex items-start">
+                    <CheckCircle className="w-6 h-6 mr-3 flex-shrink-0 mt-1" />
+                    <span className="text-lg">Part D prescription drug plan analysis</span>
+                  </li>
+                  <li className="flex items-start">
+                    <CheckCircle className="w-6 h-6 mr-3 flex-shrink-0 mt-1" />
+                    <span className="text-lg">Turning 65 enrollment deadlines and penalties</span>
+                  </li>
+                  <li className="flex items-start">
+                    <CheckCircle className="w-6 h-6 mr-3 flex-shrink-0 mt-1" />
+                    <span className="text-lg">Municipal retiree HRA coordination</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div className="bg-blue-50 border-2 border-blue-200 rounded-lg p-8">
+              <h3 className="text-2xl font-bold mb-4">Turning 65 Soon?</h3>
+              <p className="text-gray-700 mb-6 leading-relaxed">
+                Don't navigate Medicare alone. We'll help you understand your options, compare plans, and enroll without the confusion. Our consultations are always free.
+              </p>
+              <a 
+                href="tel:317-516-8938"
+                className="inline-flex items-center bg-blue-600 text-white px-6 py-3 rounded font-semibold hover:bg-blue-700 transition-colors"
+              >
+                <Calendar className="w-5 h-5 mr-2" />
+                Schedule Free Consultation
+              </a>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Employee Benefits Service */}
+      {activeService === 'employee' && (
+        <section className="py-20">
+          <div className="max-w-7xl mx-auto px-4">
+            <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
+              <div>
+                <div className="bg-green-100 w-20 h-20 rounded-lg flex items-center justify-center mb-6">
+                  <ShoppingBag className="w-12 h-12 text-green-600" />
+                </div>
+                <h2 className="text-4xl font-bold mb-6">Employee Benefits</h2>
+                <p className="text-xl text-gray-700 mb-6 leading-relaxed">
+                  Voluntary benefits for small businesses (2-49 employees). Zero-cost employer programs that employees love.
+                </p>
+                <a 
+                  href="tel:317-516-8938"
+                  className="inline-flex items-center bg-green-600 text-white px-6 py-3 rounded font-semibold hover:bg-green-700 transition-colors"
+                >
+                  <Phone className="w-5 h-5 mr-2" />
+                  Get Started
+                </a>
+              </div>
+              <div className="bg-gradient-to-br from-green-500 to-teal-600 rounded-lg p-12 text-white">
+                <h3 className="text-2xl font-bold mb-6">100% Employee-Paid Benefits:</h3>
+                <ul className="space-y-4">
+                  <li className="flex items-start">
+                    <CheckCircle className="w-6 h-6 mr-3 flex-shrink-0 mt-1" />
+                    <span className="text-lg">Voluntary life insurance up to $500K</span>
+                  </li>
+                  <li className="flex items-start">
+                    <CheckCircle className="w-6 h-6 mr-3 flex-shrink-0 mt-1" />
+                    <span className="text-lg">Short-term and long-term disability coverage</span>
+                  </li>
+                  <li className="flex items-start">
+                    <CheckCircle className="w-6 h-6 mr-3 flex-shrink-0 mt-1" />
+                    <span className="text-lg">Accident insurance with cash benefits</span>
+                  </li>
+                  <li className="flex items-start">
+                    <CheckCircle className="w-6 h-6 mr-3 flex-shrink-0 mt-1" />
+                    <span className="text-lg">Critical illness coverage for major health events</span>
+                  </li>
+                  <li className="flex items-start">
+                    <CheckCircle className="w-6 h-6 mr-3 flex-shrink-0 mt-1" />
+                    <span className="text-lg">Payroll deduction convenience</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            {/* Industries */}
+            <div className="bg-white rounded-lg shadow-lg p-8">
+              <h3 className="text-2xl font-bold mb-6 text-center">Perfect For:</h3>
+              <div className="grid md:grid-cols-2 gap-6">
+                <div className="flex items-start space-x-4">
+                  <div className="bg-green-100 rounded-lg p-3 flex-shrink-0">
+                    <ShoppingBag className="w-6 h-6 text-green-600" />
+                  </div>
+                  <div>
+                    <h4 className="font-bold mb-2">Restaurants & Hospitality</h4>
+                    <p className="text-gray-600 text-sm">Portable benefits that help with retention without employer cost.</p>
+                  </div>
+                </div>
+                <div className="flex items-start space-x-4">
+                  <div className="bg-blue-100 rounded-lg p-3 flex-shrink-0">
+                    <Building2 className="w-6 h-6 text-blue-600" />
+                  </div>
+                  <div>
+                    <h4 className="font-bold mb-2">Construction & Trades</h4>
+                    <p className="text-gray-600 text-sm">Protect your team from accidents with affordable coverage.</p>
+                  </div>
+                </div>
+                <div className="flex items-start space-x-4">
+                  <div className="bg-indigo-100 rounded-lg p-3 flex-shrink-0">
+                    <Briefcase className="w-6 h-6 text-indigo-600" />
+                  </div>
+                  <div>
+                    <h4 className="font-bold mb-2">Professional Services</h4>
+                    <p className="text-gray-600 text-sm">Compete with larger firms by offering robust benefits.</p>
+                  </div>
+                </div>
+                <div className="flex items-start space-x-4">
+                  <div className="bg-orange-100 rounded-lg p-3 flex-shrink-0">
+                    <Users className="w-6 h-6 text-orange-600" />
+                  </div>
+                  <div>
+                    <h4 className="font-bold mb-2">Retail & Service</h4>
+                    <p className="text-gray-600 text-sm">Attract and keep better employees with valuable benefits.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+    </div>
+  );
+};
+
+// MUNICIPAL TOOLS PAGE
+const MunicipalToolsPage = () => {
+  const [activeTab, setActiveTab] = useState('calculator');
+
+  const tabs = [
+    { id: 'calculator', name: 'Cost Calculator', icon: Calculator },
+    { id: 'budget', name: 'Budget Forecast', icon: TrendingUp },
+    { id: 'rfp', name: 'RFP Generator', icon: FileText },
+    { id: 'timeline', name: 'Enrollment Timeline', icon: Clock },
+    { id: 'legislative', name: 'Legislative Tracker', icon: BookOpen },
+  ];
+
+  return (
+    <div className="max-w-7xl mx-auto px-4 py-12">
+      <div className="mb-8">
+        <h1 className="text-4xl font-bold text-gray-900 mb-2">Municipal Tools</h1>
+        <p className="text-xl text-gray-600">Free benefits optimization tools for Indiana municipalities</p>
+      </div>
+
+      <div className="lg:grid lg:grid-cols-12 lg:gap-8">
+        <nav className="lg:col-span-3 mb-8">
+          <div className="bg-white rounded-lg shadow-sm p-4 space-y-2">
+            {tabs.map((tab) => {
+              const Icon = tab.icon;
+              return (
+                <button 
+                  key={tab.id} 
+                  onClick={() => setActiveTab(tab.id)} 
+                  className={`w-full flex items-center space-x-3 px-4 py-3 rounded-lg transition-colors ${
+                    activeTab === tab.id 
+                      ? 'bg-blue-600 text-white' 
+                      : 'text-gray-700 hover:bg-gray-100'
+                  }`}
+                >
+                  <Icon className="w-5 h-5" />
+                  <span className="font-medium">{tab.name}</span>
+                </button>
+              );
+            })}
+          </div>
+        </nav>
+
+        <main className="lg:col-span-9">
+          {activeTab === 'calculator' && <CostCalculator />}
+          {activeTab === 'budget' && <BudgetForecast />}
+          {activeTab === 'rfp' && <RFPGenerator />}
+          {activeTab === 'timeline' && <EnrollmentTimeline />}
+          {activeTab === 'legislative' && <LegislativeTracker />}
+        </main>
+      </div>
+    </div>
+  );
+};
+
+// Cost Calculator Component
+const CostCalculator = () => {
+  const [data, setData] = useState({ 
+    municipality: '', 
+    employees: '', 
+    employeePremium: '',
+    employerPremium: '',
+  });
+  const [results, setResults] = useState(null);
+
+  const compare = () => {
+    const emp = parseInt(data.employees) || 500;
+    const employeePrem = parseFloat(data.employeePremium) || 0;
+    const employerPrem = parseFloat(data.employerPremium) || 0;
+    const totalPremium = employeePrem + employerPrem || 1000;
+    const marketPrem = Math.round(totalPremium * 0.87);
+    const savings = (totalPremium - marketPrem) * emp * 12;
+    const monthlySavings = (totalPremium - marketPrem) * emp;
+
+    setResults({
+      municipality: data.municipality || 'Your Municipality',
+      aimCost: totalPremium * emp * 12,
+      marketCost: marketPrem * emp * 12,
+      savings: savings,
+      monthlySavings: monthlySavings,
+      totalPremium: totalPremium,
+      marketPremium: marketPrem,
+      savingsPercent: Math.round(((totalPremium - marketPrem) / totalPremium) * 100),
+      recommendation: `Based on Indiana market data, exploring competitive alternatives could save ${data.municipality || 'your municipality'} approximately $${savings.toLocaleString()} annually. Mark it, dude!`
+    });
+  };
+
+  return (
+    <div className="space-y-6">
+      <div className="bg-white rounded-lg shadow-sm p-6">
+        <h2 className="text-2xl font-bold mb-4">Benefits Cost Calculator</h2>
+        <div className="grid md:grid-cols-2 gap-4 mb-6">
+          <div>
+            <label className="block text-sm font-medium mb-1">Municipality Name</label>
+            <input type="text" value={data.municipality} onChange={(e) => setData({...data, municipality: e.target.value})} placeholder="City of Fishers" className="w-full px-3 py-2 border rounded-md" />
+          </div>
+          <div>
+            <label className="block text-sm font-medium mb-1">Number of Employees</label>
+            <input type="number" value={data.employees} onChange={(e) => setData({...data, employees: e.target.value})} placeholder="500" className="w-full px-3 py-2 border rounded-md" />
+          </div>
+          <div>
+            <label className="block text-sm font-medium mb-1">Employee Contribution (Monthly)</label>
+            <input type="number" value={data.employeePremium} onChange={(e) => setData({...data, employeePremium: e.target.value})} placeholder="85" className="w-full px-3 py-2 border rounded-md" />
+          </div>
+          <div>
+            <label className="block text-sm font-medium mb-1">Employer Cost (Monthly)</label>
+            <input type="number" value={data.employerPremium} onChange={(e) => setData({...data, employerPremium: e.target.value})} placeholder="915" className="w-full px-3 py-2 border rounded-md" />
+          </div>
+        </div>
+        <button onClick={compare} className="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700">Compare to Market</button>
+      </div>
+
+      {results && (
+        <div className="space-y-4">
+          <div className="grid md:grid-cols-3 gap-4">
+            <div className="bg-white rounded-lg shadow-sm p-6">
+              <p className="text-sm text-gray-500 mb-1">Current Annual Cost</p>
+              <p className="text-2xl font-bold">${results.aimCost.toLocaleString()}</p>
+            </div>
+            <div className="bg-white rounded-lg shadow-sm p-6">
+              <p className="text-sm text-gray-500 mb-1">Market Alternative</p>
+              <p className="text-2xl font-bold text-blue-600">${results.marketCost.toLocaleString()}</p>
+            </div>
+            <div className="bg-white rounded-lg shadow-sm p-6 border-2 border-green-500">
+              <p className="text-sm text-gray-500 mb-1">Potential Savings</p>
+              <p className="text-2xl font-bold text-green-600">${results.savings.toLocaleString()}</p>
+            </div>
+          </div>
+
+          <div className="bg-white rounded-lg shadow-sm p-6">
+            <h3 className="font-semibold mb-4">Share This Analysis</h3>
+            <div className="grid md:grid-cols-3 gap-3">
+              <button onClick={() => downloadPDF(results)} className="flex items-center justify-center space-x-2 px-4 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+                <Download className="w-4 h-4" />
+                <span>Download PDF</span>
+              </button>
+              <button onClick={() => emailReport(results)} className="flex items-center justify-center space-x-2 px-4 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700">
+                <Mail className="w-4 h-4" />
+                <span>Email Report</span>
+              </button>
+              <button onClick={() => scheduleWebinarMeeting(results)} className="flex items-center justify-center space-x-2 px-4 py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700">
+                <Calendar className="w-4 h-4" />
+                <span>Schedule Meeting</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+
+// Budget Forecast Component
+const BudgetForecast = () => {
+  const [data, setData] = useState({ currentCost: '', employees: '', inflationRate: '5', years: '5' });
+  const [forecast, setForecast] = useState(null);
+
+  const generateForecast = () => {
+    const currentCost = parseFloat(data.currentCost) || 1000;
+    const employees = parseInt(data.employees) || 500;
+    const inflationRate = parseFloat(data.inflationRate) / 100 || 0.05;
+    const years = parseInt(data.years) || 5;
+    const yearlyData = [];
+    let cumulativeSavings = 0;
+
+    for (let year = 1; year <= years; year++) {
+      const inflatedCost = currentCost * Math.pow(1 + inflationRate, year);
+      const totalCost = inflatedCost * employees * 12;
+      const marketCost = totalCost * 0.87;
+      const annualSavings = totalCost - marketCost;
+      cumulativeSavings += annualSavings;
+
+      yearlyData.push({
+        year: new Date().getFullYear() + year,
+        currentPath: Math.round(totalCost),
+        marketPath: Math.round(marketCost),
+        annualSavings: Math.round(annualSavings),
+        cumulativeSavings: Math.round(cumulativeSavings)
+      });
+    }
+
+    setForecast({ yearlyData, totalSavings: Math.round(cumulativeSavings) });
+  };
+
+  return (
+    <div className="space-y-6">
+      <div className="bg-white rounded-lg shadow-sm p-6">
+        <h2 className="text-2xl font-bold mb-4">Budget Forecast Tool</h2>
+        <div className="grid md:grid-cols-2 gap-4 mb-6">
+          <div>
+            <label className="block text-sm font-medium mb-1">Current Monthly Cost per Employee</label>
+            <input type="number" value={data.currentCost} onChange={(e) => setData({ ...data, currentCost: e.target.value })} placeholder="1000" className="w-full px-3 py-2 border rounded-md" />
+          </div>
+          <div>
+            <label className="block text-sm font-medium mb-1">Number of Employees</label>
+            <input type="number" value={data.employees} onChange={(e) => setData({ ...data, employees: e.target.value })} placeholder="500" className="w-full px-3 py-2 border rounded-md" />
+          </div>
+          <div>
+            <label className="block text-sm font-medium mb-1">Expected Annual Inflation (%)</label>
+            <input type="number" value={data.inflationRate} onChange={(e) => setData({ ...data, inflationRate: e.target.value })} placeholder="5" className="w-full px-3 py-2 border rounded-md" />
+          </div>
+          <div>
+            <label className="block text-sm font-medium mb-1">Forecast Years</label>
+            <input type="number" value={data.years} onChange={(e) => setData({ ...data, years: e.target.value })} placeholder="5" min="1" max="10" className="w-full px-3 py-2 border rounded-md" />
+          </div>
+        </div>
+        <button onClick={generateForecast} className="w-full bg-indigo-600 text-white py-3 rounded-lg font-semibold hover:bg-indigo-700">Generate Forecast</button>
+      </div>
+
+      {forecast && (
+        <div className="space-y-4">
+          <div className="bg-green-50 border-2 border-green-500 rounded-lg p-6">
+            <h3 className="text-lg font-semibold text-green-900 mb-2">Total {data.years}-Year Savings Potential</h3>
+            <p className="text-4xl font-bold text-green-600">${forecast.totalSavings.toLocaleString()}</p>
+          </div>
+          <div className="bg-white rounded-lg shadow-sm p-6">
+            <h3 className="font-semibold mb-4">Year-by-Year Breakdown</h3>
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="border-b">
+                    <th className="text-left py-2">Year</th>
+                    <th className="text-right py-2">Current Path</th>
+                    <th className="text-right py-2">Market Alternative</th>
+                    <th className="text-right py-2">Annual Savings</th>
+                    <th className="text-right py-2">Cumulative</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {forecast.yearlyData.map((row, idx) => (
+                    <tr key={idx} className="border-b">
+                      <td className="py-2">{row.year}</td>
+                      <td className="text-right">${row.currentPath.toLocaleString()}</td>
+                      <td className="text-right text-blue-600">${row.marketPath.toLocaleString()}</td>
+                      <td className="text-right text-green-600">${row.annualSavings.toLocaleString()}</td>
+                      <td className="text-right font-semibold text-green-700">${row.cumulativeSavings.toLocaleString()}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+
+// RFP Generator Component
+const RFPGenerator = () => {
+  const [data, setData] = useState({ municipality: '', employees: '', currentCarrier: '', rfpDueDate: '', effectiveDate: '', contactName: '', contactEmail: '' });
+
+  const generateRFP = () => {
+    const rfpContent = `REQUEST FOR PROPOSAL - Employee Group Health Insurance Benefits
+${data.municipality || '[Municipality Name]'}
+
+SUBMISSION DEADLINE: ${data.rfpDueDate || '[Date]'}
+EFFECTIVE DATE: ${data.effectiveDate || '[Date]'}
+
+Municipality: ${data.municipality || '[Municipality Name]'}
+Employees: ${data.employees || '[Number]'}
+Current Carrier: ${data.currentCarrier || '[Carrier]'}
+
+Contact: ${data.contactName || '[Name]'} - ${data.contactEmail || '[Email]'}
+
+[Full RFP content would be generated here...]
+
+Generated by Mark Benefits
+317-516-8938 | info@mark-benefits.com`;
+
+    const blob = new Blob([rfpContent], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `${data.municipality.replace(/\s+/g, '-') || 'Municipality'}-Benefits-RFP.txt`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  };
+
+  return (
+    <div className="space-y-6">
+      <div className="bg-white rounded-lg shadow-sm p-6">
+        <h2 className="text-2xl font-bold mb-4">RFP Generator</h2>
+        <div className="space-y-4 mb-6">
+          <div className="grid md:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-sm font-medium mb-1">Municipality Name</label>
+              <input type="text" value={data.municipality} onChange={(e) => setData({ ...data, municipality: e.target.value })} placeholder="City of Indianapolis" className="w-full px-3 py-2 border rounded-md" />
+            </div>
+            <div>
+              <label className="block text-sm font-medium mb-1">Number of Employees</label>
+              <input type="number" value={data.employees} onChange={(e) => setData({ ...data, employees: e.target.value })} placeholder="500" className="w-full px-3 py-2 border rounded-md" />
+            </div>
+          </div>
+          <div>
+            <label className="block text-sm font-medium mb-1">Current Carrier</label>
+            <input type="text" value={data.currentCarrier} onChange={(e) => setData({ ...data, currentCarrier: e.target.value })} placeholder="AIM Trust" className="w-full px-3 py-2 border rounded-md" />
+          </div>
+          <div className="grid md:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-sm font-medium mb-1">RFP Due Date</label>
+              <input type="date" value={data.rfpDueDate} onChange={(e) => setData({ ...data, rfpDueDate: e.target.value })} className="w-full px-3 py-2 border rounded-md" />
+            </div>
+            <div>
+              <label className="block text-sm font-medium mb-1">Effective Date</label>
+              <input type="date" value={data.effectiveDate} onChange={(e) => setData({ ...data, effectiveDate: e.target.value })} className="w-full px-3 py-2 border rounded-md" />
+            </div>
+          </div>
+        </div>
+        <button onClick={generateRFP} className="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 flex items-center justify-center space-x-2">
+          <Download className="w-5 h-5" />
+          <span>Generate & Download RFP</span>
+        </button>
+      </div>
+    </div>
+  );
+};
+
+// Enrollment Timeline Component
+const EnrollmentTimeline = () => {
+  const [effectiveDate, setEffectiveDate] = useState('');
+  const [timeline, setTimeline] = useState(null);
+
+  const generateTimeline = () => {
+    if (!effectiveDate) {
+      alert('Please select an effective date');
+      return;
+    }
+
+    const effective = new Date(effectiveDate);
+    const milestones = [
+      { weeks: -24, phase: 'Planning', task: 'Begin RFP Process' },
+      { weeks: -12, phase: 'Selection', task: 'Vendor Selection' },
+      { weeks: -3, phase: 'Enrollment', task: 'Open Enrollment Begins' },
+      { weeks: 0, phase: 'Go-Live', task: 'Coverage Effective' }
+    ];
+
+    const timelineWithDates = milestones.map(milestone => {
+      const date = new Date(effective);
+      date.setDate(date.getDate() + (milestone.weeks * 7));
+      return { ...milestone, date: date.toLocaleDateString() };
+    });
+
+    setTimeline(timelineWithDates);
+  };
+
+  return (
+    <div className="space-y-6">
+      <div className="bg-white rounded-lg shadow-sm p-6">
+        <h2 className="text-2xl font-bold mb-4">Enrollment Timeline</h2>
+        <div className="mb-6">
+          <label className="block text-sm font-medium mb-1">Coverage Effective Date</label>
+          <input type="date" value={effectiveDate} onChange={(e) => setEffectiveDate(e.target.value)} className="w-full px-3 py-2 border rounded-md" />
+        </div>
+        <button onClick={generateTimeline} className="w-full bg-indigo-600 text-white py-3 rounded-lg font-semibold hover:bg-indigo-700">Generate Timeline</button>
+      </div>
+
+      {timeline && (
+        <div className="bg-white rounded-lg shadow-sm p-6">
+          <h3 className="font-semibold mb-4">Implementation Timeline</h3>
+          <div className="space-y-4">
+            {timeline.map((milestone, idx) => (
+              <div key={idx} className="border-l-4 border-blue-500 pl-4 py-2">
+                <div className="flex justify-between items-start">
+                  <div>
+                    <span className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">{milestone.phase}</span>
+                    <h4 className="font-semibold mt-1">{milestone.task}</h4>
+                  </div>
+                  <span className="text-sm text-gray-600">{milestone.date}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+
+// Legislative Tracker Component
+const LegislativeTracker = () => {
+  const [bills, setBills] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const fetchLegislation = async () => {
+    setLoading(true);
+    setError(null);
+    
+    try {
+      const apiKey = 'e57a5dab94fd5d93f2f10aaf33e24a07';
+      const state = 'IN';
+      const year = new Date().getFullYear();
+      
+      // Use CORS proxy for development
+      const corsProxy = 'https://api.allorigins.win/raw?url=';
+      
+      // Fetch current session
+      const sessionUrl = `https://api.legiscan.com/?key=${apiKey}&op=getSessionList&state=${state}`;
+      const sessionResponse = await fetch(corsProxy + encodeURIComponent(sessionUrl));
+      const sessionData = await sessionResponse.json();
+      
+      if (sessionData.status === 'OK' && sessionData.sessions) {
+        const sessions = Object.values(sessionData.sessions);
+        const currentSession = sessions.find(s => s.year_start === year) || sessions[0];
         
-        function filterBills() {
-            const sear
+        if (currentSession) {
+          // Fetch bills for session
+          const billsUrl = `https://api.legiscan.com/?key=${apiKey}&op=getMasterList&state=${state}&id=${currentSession.session_id}`;
+          const billsResponse = await fetch(corsProxy + encodeURIComponent(billsUrl));
+          const billsData = await billsResponse.json();
+          
+          if (billsData.status === 'OK' && billsData.masterlist) {
+            const healthBills = Object.values(billsData.masterlist)
+              .filter(bill => {
+                if (!bill || typeof bill !== 'object') return false;
+                const title = (bill.title || '').toLowerCase();
+                const desc = (bill.description || '').toLowerCase();
+                return title.includes('health') || title.includes('insurance') || 
+                       title.includes('benefit') || title.includes('medicare') ||
+                       title.includes('employee') || desc.includes('health') || 
+                       desc.includes('insurance') || desc.includes('benefit');
+              })
+              .slice(0, 25);
+            
+            setBills(healthBills);
+          } else {
+            setError('No legislation data available for current session.');
+          }
+        } else {
+          setError('Could not find current legislative session.');
+        }
+      } else {
+        setError('Failed to retrieve legislative session data.');
+      }
+    } catch (err) {
+      console.error('Legislative API Error:', err);
+      setError('Unable to fetch legislation data. This may be due to API restrictions. Please try again later or contact support.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchLegislation();
+  }, []);
+
+  const filteredBills = searchTerm 
+    ? bills.filter(bill => 
+        (bill.title?.toLowerCase() || '').includes(searchTerm.toLowerCase()) ||
+        (bill.description?.toLowerCase() || '').includes(searchTerm.toLowerCase()) ||
+        (bill.bill_number?.toLowerCase() || '').includes(searchTerm.toLowerCase())
+      )
+    : bills;
+
+  const getStatusColor = (status) => {
+    const statusNum = parseInt(status);
+    if (statusNum === 1) return 'bg-yellow-100 text-yellow-800';
+    if (statusNum === 2) return 'bg-green-100 text-green-800';
+    if (statusNum === 3) return 'bg-red-100 text-red-800';
+    if (statusNum === 4) return 'bg-blue-100 text-blue-800';
+    return 'bg-gray-100 text-gray-800';
+  };
+
+  return (
+    <div className="space-y-6">
+      <div className="bg-white rounded-lg shadow-sm p-6">
+        <div className="flex items-center justify-between mb-4">
+          <div>
+            <h2 className="text-2xl font-bold">Indiana Benefits Legislation Tracker</h2>
+            <p className="text-gray-600 text-sm mt-1">Real-time tracking of health and benefits legislation</p>
+          </div>
+          <button 
+            onClick={fetchLegislation}
+            disabled={loading}
+            className="bg-blue-600 text-white px-4 py-2 rounded font-semibold hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+          >
+            {loading ? 'Loading...' : 'Refresh'}
+          </button>
+        </div>
+        
+        <input
+          type="text"
+          placeholder="Search by bill number, title, or description..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className="w-full px-4 py-2 border rounded-md mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+
+        {loading && (
+          <div className="text-center py-12">
+            <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mb-4"></div>
+            <p className="text-gray-600">Loading Indiana legislation...</p>
+          </div>
+        )}
+
+        {error && (
+          <div className="bg-red-50 border-2 border-red-200 rounded-lg p-6 flex items-start space-x-3">
+            <AlertCircle className="w-6 h-6 text-red-600 mt-0.5 flex-shrink-0" />
+            <div>
+              <p className="text-red-800 font-semibold mb-2">{error}</p>
+              <p className="text-red-700 text-sm">
+                If this issue persists, please contact us at <a href="tel:317-516-8938" className="underline">317-516-8938</a> or <a href="mailto:info@mark-benefits.com" className="underline">info@mark-benefits.com</a>
+              </p>
+            </div>
+          </div>
+        )}
+
+        {!loading && !error && bills.length === 0 && (
+          <div className="text-center py-12 bg-gray-50 rounded-lg">
+            <BookOpen className="w-16 h-16 text-gray-400 mx-auto mb-4" />
+            <p className="text-gray-600 text-lg font-semibold mb-2">No legislation found</p>
+            <p className="text-gray-500 text-sm">Try refreshing or check back later</p>
+          </div>
+        )}
+
+        {!loading && !error && filteredBills.length === 0 && bills.length > 0 && (
+          <div className="text-center py-8 text-gray-500">
+            No bills match your search. Try different keywords.
+          </div>
+        )}
+
+        {!loading && !error && filteredBills.length > 0 && (
+          <div className="space-y-3">
+            <p className="text-sm text-gray-600 mb-4">
+              Showing {filteredBills.length} of {bills.length} benefits-related bills
+            </p>
+            {filteredBills.map((bill, idx) => (
+              <div key={idx} className="border-2 border-gray-200 rounded-lg p-5 hover:border-blue-300 hover:shadow-md transition-all">
+                <div className="flex items-start justify-between">
+                  <div className="flex-1">
+                    <div className="flex items-center space-x-2 mb-3">
+                      <span className="bg-blue-600 text-white text-sm font-bold px-3 py-1 rounded">
+                        {bill.bill_number}
+                      </span>
+                      {bill.status && (
+                        <span className={`text-xs font-semibold px-2 py-1 rounded ${getStatusColor(bill.status)}`}>
+                          {bill.status_desc || `Status ${bill.status}`}
+                        </span>
+                      )}
+                    </div>
+                    <h3 className="font-bold text-gray-900 mb-2 text-lg">{bill.title}</h3>
+                    {bill.description && (
+                      <p className="text-sm text-gray-600 mb-3 leading-relaxed">{bill.description}</p>
+                    )}
+                    <div className="flex items-center space-x-4 text-xs text-gray-500">
+                      {bill.last_action_date && (
+                        <span className="flex items-center space-x-1">
+                          <Clock className="w-3 h-3" />
+                          <span>Last Action: {new Date(bill.last_action_date).toLocaleDateString()}</span>
+                        </span>
+                      )}
+                      {bill.last_action && (
+                        <span className="italic">{bill.last_action}</span>
+                      )}
+                    </div>
+                  </div>
+                  {bill.url && (
+                    <a 
+                      href={bill.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="ml-4 text-blue-600 hover:text-blue-700 flex-shrink-0 p-2 hover:bg-blue-50 rounded transition-colors"
+                      title="View full bill"
+                    >
+                      <ArrowRight className="w-5 h-5" />
+                    </a>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+
+      <div className="bg-gradient-to-r from-blue-50 to-indigo-50 border-2 border-blue-200 rounded-lg p-6">
+        <div className="flex items-start space-x-3">
+          <BookOpen className="w-6 h-6 text-blue-600 flex-shrink-0 mt-1" />
+          <div>
+            <h3 className="font-bold text-blue-900 mb-2">About Legislative Tracking</h3>
+            <p className="text-sm text-blue-800 leading-relaxed">
+              <strong>Powered by LegiScan:</strong> Track Indiana legislation affecting municipal benefits, health insurance, and employee coverage. 
+              This tool monitors current session bills related to healthcare, insurance, and employee benefits to help municipalities stay informed of potential regulatory changes.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {!loading && !error && bills.length > 0 && (
+        <div className="bg-white rounded-lg shadow-sm p-6">
+          <h3 className="font-semibold mb-3">Need Legislative Analysis?</h3>
+          <p className="text-gray-700 mb-4">
+            Our team can help you understand how pending legislation might impact your municipality's benefits strategy.
+          </p>
+          <div className="flex gap-3">
+            <a 
+              href="tel:317-516-8938"
+              className="inline-flex items-center bg-blue-600 text-white px-4 py-2 rounded font-semibold hover:bg-blue-700 transition-colors"
+            >
+              <Phone className="w-4 h-4 mr-2" />
+              Call 317-516-8938
+            </a>
+            <a 
+              href="mailto:info@mark-benefits.com"
+              className="inline-flex items-center bg-white border-2 border-blue-600 text-blue-600 px-4 py-2 rounded font-semibold hover:bg-blue-50 transition-colors"
+            >
+              <Mail className="w-4 h-4 mr-2" />
+              Email Us
+            </a>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+
+// CONTACT PAGE
+const ContactPage = () => {
+  return (
+    <div>
+      {/* Hero */}
+      <section className="bg-gradient-to-r from-gray-900 to-gray-800 text-white py-20">
+        <div className="max-w-7xl mx-auto px-4 text-center">
+          <h1 className="text-5xl font-bold mb-4">Contact Us</h1>
+          <p className="text-xl text-gray-300">Let's discuss how we can help optimize your benefits</p>
+        </div>
+      </section>
+
+      {/* Contact Info */}
+      <section className="py-20">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="grid md:grid-cols-2 gap-12">
+            {/* Contact Details */}
+            <div>
+              <h2 className="text-3xl font-bold mb-8">Get In Touch</h2>
+              
+              <div className="space-y-6 mb-8">
+                <div className="flex items-start space-x-4">
+                  <div className="bg-blue-100 rounded-lg p-3">
+                    <Phone className="w-6 h-6 text-blue-600" />
+                  </div>
+                  <div>
+                    <h3 className="font-bold mb-1">Phone</h3>
+                    <a href="tel:317-516-8938" className="text-blue-600 hover:text-blue-700 text-lg">317-516-8938</a>
+                    <p className="text-sm text-gray-600">Mon-Fri, 9AM-5PM EST</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start space-x-4">
+                  <div className="bg-blue-100 rounded-lg p-3">
+                    <Mail className="w-6 h-6 text-blue-600" />
+                  </div>
+                  <div>
+                    <h3 className="font-bold mb-1">Email</h3>
+                    <a href="mailto:info@mark-benefits.com" className="text-blue-600 hover:text-blue-700">info@mark-benefits.com</a>
+                    <p className="text-sm text-gray-600">We respond within 24 hours</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start space-x-4">
+                  <div className="bg-blue-100 rounded-lg p-3">
+                    <MapPin className="w-6 h-6 text-blue-600" />
+                  </div>
+                  <div>
+                    <h3 className="font-bold mb-1">Location</h3>
+                    <p className="text-gray-700">Fishers, Indiana</p>
+                    <p className="text-sm text-gray-600">Serving all of Indiana</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start space-x-4">
+                  <div className="bg-blue-100 rounded-lg p-3">
+                    <MessageSquare className="w-6 h-6 text-blue-600" />
+                  </div>
+                  <div>
+                    <h3 className="font-bold mb-1">AI Assistant</h3>
+                    <button 
+                      onClick={() => document.querySelector('[aria-label="Open chat with Mark"]')?.click()}
+                      className="text-blue-600 hover:text-blue-700 font-semibold"
+                    >
+                      Chat with Mark AI
+                    </button>
+                    <p className="text-sm text-gray-600">Available 24/7 for instant answers</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-blue-50 border-2 border-blue-200 rounded-lg p-6">
+                <h3 className="font-bold mb-2">Office Hours</h3>
+                <p className="text-gray-700">
+                  <strong>Monday - Friday:</strong> 9:00 AM - 5:00 PM<br />
+                  <strong>Saturday:</strong> By Appointment<br />
+                  <strong>Sunday:</strong> Closed
+                </p>
+              </div>
+            </div>
+
+            {/* Contact Form */}
+            <div className="bg-white rounded-lg shadow-lg p-8">
+              <h2 className="text-2xl font-bold mb-6">Send Us a Message</h2>
+              <form className="space-y-4">
+                <div>
+                  <label className="block text-sm font-semibold mb-2">Name *</label>
+                  <input 
+                    type="text" 
+                    className="w-full px-4 py-3 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500" 
+                    placeholder="Your name"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-semibold mb-2">Email *</label>
+                  <input 
+                    type="email" 
+                    className="w-full px-4 py-3 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500" 
+                    placeholder="your@email.com"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-semibold mb-2">Phone</label>
+                  <input 
+                    type="tel" 
+                    className="w-full px-4 py-3 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500" 
+                    placeholder="(317) 555-1234"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-semibold mb-2">I'm interested in:</label>
+                  <select className="w-full px-4 py-3 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <option>Municipal Guidance</option>
+                    <option>Medicare Solutions</option>
+                    <option>Employee Benefits</option>
+                    <option>General Inquiry</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-sm font-semibold mb-2">Message *</label>
+                  <textarea 
+                    rows="4" 
+                    className="w-full px-4 py-3 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500" 
+                    placeholder="Tell us about your needs..."
+                  ></textarea>
+                </div>
+                <button 
+                  type="submit" 
+                  className="w-full bg-blue-600 text-white py-3 rounded font-semibold hover:bg-blue-700 transition-colors"
+                >
+                  Send Message
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Map Placeholder */}
+      <section className="py-12 bg-gray-100">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="bg-gray-300 h-96 rounded-lg flex items-center justify-center">
+            <div className="text-center">
+              <MapPin className="w-16 h-16 text-gray-500 mx-auto mb-4" />
+              <p className="text-gray-600 font-semibold">Serving all of Indiana</p>
+              <p className="text-gray-500 text-sm">Based in Fishers, IN</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+};
+
+// Chatbot Component
+const FloatingMarkChatbot = ({ onClose }) => {
+  const [messages, setMessages] = useState([
+    {
+      role: 'assistant',
+      content: "Hey there! I'm Mark, your benefits expert. I help with Indiana municipal benefits, Medicare guidance, and small business voluntary benefits. What would you like to know?"
+    }
+  ]);
+  const [input, setInput] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+
+  const sendMessage = async () => {
+    if (!input.trim() || isLoading) return;
+
+    const userMessage = { role: 'user', content: input };
+    setMessages(prev => [...prev, userMessage]);
+    setInput('');
+    setIsLoading(true);
+
+    try {
+      const response = await fetch('https://api.anthropic.com/v1/messages', {
+        method: 'POST',
+        headers: { 
+          'Content-Type': 'application/json',
+          'anthropic-version': '2023-06-01'
+        },
+        body: JSON.stringify({
+          model: 'claude-sonnet-4-20250514',
+          max_tokens: 1000,
+          system: `You are Mark, an enthusiastic and knowledgeable benefits consultant specializing in municipal employee benefits in Indiana. 
+
+Your expertise includes:
+- Municipal benefits cost analysis and AIM Trust comparisons
+- Medicare transitions for municipal retirees (explaining Parts A, B, D, Medigap)
+- HSA strategies and contribution limits
+- Benefits cost optimization for municipalities
+- Indiana-specific insurance regulations and benchmarks
+- Group health insurance plan design
+- RFP processes and vendor selection
+- Voluntary benefits for small businesses
+
+Your personality:
+- Friendly, approachable, and conversational
+- Use "Mark it, dude!" when giving strong recommendations
+- Use real numbers and data when possible (e.g., "typical Indiana municipal health costs run $900-1,100/employee/month")
+- Focus on practical, actionable advice
+- Care deeply about helping municipalities save money while maintaining quality benefits
+- Stay neutral on specific providers - focus on helping clients make informed decisions
+
+Keep responses concise but informative (2-3 paragraphs max). If asked about specific calculations, encourage them to use the calculators in the app. Always be helpful and never refuse to answer benefits-related questions.`,
+          messages: messages.concat(userMessage)
+        })
+      });
+
+      const data = await response.json();
+      
+      if (!response.ok) throw new Error(data.error || 'Failed to get response');
+
+      const assistantMessage = { role: 'assistant', content: data.content[0].text };
+      setMessages(prev => [...prev, assistantMessage]);
+    } catch (error) {
+      console.error('Chat error:', error);
+      setMessages(prev => [...prev, {
+        role: 'assistant',
+        content: "Oops! I'm having trouble connecting right now. Please try again in a moment or call 317-516-8938."
+      }]);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const suggestedQuestions = [
+    "How can we reduce benefits costs?",
+    "What's the RFP timeline?",
+    "Explain Medicare transition",
+    "Compare AIM Trust alternatives"
+  ];
+
+  const askSuggested = (question) => {
+    setInput(question);
+  };
+
+  return (
+    <div className="flex flex-col h-full bg-gray-50">
+      {messages.length === 1 && (
+        <div className="p-4 bg-white border-b">
+          <h3 className="font-semibold mb-3 text-gray-900 text-sm">Popular questions:</h3>
+          <div className="grid grid-cols-1 gap-2">
+            {suggestedQuestions.map((q, idx) => (
+              <button
+                key={idx}
+                onClick={() => askSuggested(q)}
+                className="text-left px-3 py-2 bg-blue-50 hover:bg-blue-100 rounded text-sm text-blue-900 transition-colors"
+              >
+                {q}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+
+      <div className="flex-1 overflow-y-auto p-4 space-y-4">
+        {messages.map((msg, idx) => (
+          <div key={idx} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
+            <div className={`max-w-[85%] rounded-lg p-4 ${
+              msg.role === 'user' 
+                ? 'bg-blue-600 text-white' 
+                : 'bg-white text-gray-900 shadow-sm'
+            }`}>
+              {msg.role === 'assistant' && idx === 0 && (
+                <div className="flex items-center space-x-2 mb-2">
+                  <div className="bg-blue-600 rounded px-2 py-1">
+                    <span className="text-xs font-bold text-white">MARK</span>
+                  </div>
+                </div>
+              )}
+              <p className="whitespace-pre-wrap text-sm">{msg.content}</p>
+            </div>
+          </div>
+        ))}
+        {isLoading && (
+          <div className="flex justify-start">
+            <div className="bg-white rounded-lg p-4 shadow-sm">
+              <div className="flex space-x-2">
+                <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
+                <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
+                <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+
+      <div className="p-4 bg-white border-t">
+        <div className="flex space-x-2 mb-2">
+          <input
+            type="text"
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            onKeyPress={(e) => e.key === 'Enter' && !e.shiftKey && sendMessage()}
+            placeholder="Ask about benefits, Medicare, costs..."
+            className="flex-1 px-4 py-3 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+            disabled={isLoading}
+          />
+          <button
+            onClick={sendMessage}
+            disabled={isLoading || !input.trim()}
+            className="bg-blue-600 text-white px-6 py-3 rounded font-semibold hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            Send
+          </button>
+        </div>
+        <div className="flex items-center justify-between text-xs text-gray-500">
+          <span>💡 Powered by Claude AI</span>
+          <a href="tel:317-516-8938" className="text-blue-600 hover:text-blue-700 font-semibold flex items-center space-x-1">
+            <Phone className="w-3 h-3" />
+            <span>317-516-8938</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default MarkBenefitsWebsite;
