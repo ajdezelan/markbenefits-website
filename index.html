@@ -8,6 +8,8 @@
     <style>
         .fade-in { animation: fadeIn 0.5s ease-in; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .hidden { display: none; }
+        html { scroll-behavior: smooth; }
     </style>
 </head>
 <body class="bg-white">
@@ -16,7 +18,7 @@
         <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center text-sm">
             <a href="mailto:info@mark-benefits.com" class="hover:text-blue-300">✉️ info@mark-benefits.com</a>
             <div class="flex items-center space-x-4">
-                <a href="tel:317-498-8819" class="hover:text-blue-300">📞 317-498-8819</a>
+                <a href="tel:317-516-8938" class="hover:text-blue-300">📞 317-516-8938</a>
                 <span class="text-gray-400">|</span>
                 <span>Fishers, Indiana</span>
             </div>
@@ -27,7 +29,7 @@
     <header class="bg-white shadow-sm border-b sticky top-0 z-30">
         <div class="max-w-7xl mx-auto px-4 py-4">
             <div class="flex justify-between items-center">
-                <div class="flex items-center space-x-3">
+                <a href="#home" class="flex items-center space-x-3">
                     <div class="bg-gradient-to-br from-blue-600 to-blue-800 rounded-lg p-3 shadow-md">
                         <div class="text-center">
                             <div class="text-xl font-black text-white tracking-wide">MARK</div>
@@ -38,8 +40,8 @@
                         <h1 class="text-xl font-bold text-gray-900">Mark Benefits</h1>
                         <p class="text-gray-600 text-xs">From Hire to Retire</p>
                     </div>
-                </div>
-                <a href="tel:317-498-8819" class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 font-semibold">
+                </a>
+                <a href="tel:317-516-8938" class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 font-semibold">
                     Get Started
                 </a>
             </div>
@@ -47,13 +49,13 @@
     </header>
 
     <!-- Hero -->
-    <section class="bg-gradient-to-r from-blue-900 to-blue-700 text-white py-24 fade-in">
+    <section id="home" class="bg-gradient-to-r from-blue-900 to-blue-700 text-white py-24 fade-in">
         <div class="max-w-7xl mx-auto px-4">
             <h2 class="text-5xl md:text-6xl font-bold mb-6">Smart Benefits Solutions<br>From Hire to Retire</h2>
             <p class="text-xl mb-8 text-blue-100 max-w-3xl">Independent benefits consulting for Indiana municipalities, Medicare beneficiaries, and small businesses.</p>
             <div class="flex gap-4">
-                <a href="tel:317-498-8819" class="bg-white text-blue-900 px-8 py-4 rounded font-bold text-lg hover:bg-gray-100">
-                    📞 317-498-8819
+                <a href="tel:317-516-8938" class="bg-white text-blue-900 px-8 py-4 rounded font-bold text-lg hover:bg-gray-100">
+                    📞 317-516-8938
                 </a>
                 <a href="#tools" class="bg-transparent border-2 border-white px-8 py-4 rounded font-bold text-lg hover:bg-white hover:text-blue-900">
                     View Tools
@@ -133,33 +135,236 @@
         <div class="max-w-7xl mx-auto px-4">
             <h2 class="text-4xl font-bold text-center mb-4">Municipal Tools</h2>
             <p class="text-xl text-gray-600 text-center mb-12">Free benefits optimization tools for Indiana municipalities</p>
-            <div class="grid md:grid-cols-4 gap-6">
-                <div class="bg-white rounded-lg shadow-md p-6 border-t-4 border-blue-600">
+            
+            <!-- Tool Navigation Cards -->
+            <div class="grid md:grid-cols-4 gap-6 mb-12">
+                <button onclick="showTool('calculator')" class="tool-nav bg-white rounded-lg shadow-md p-6 border-t-4 border-blue-600 hover:shadow-xl transition text-left cursor-pointer">
                     <div class="text-4xl mb-4">🧮</div>
                     <h3 class="text-xl font-bold mb-3">Cost Calculator</h3>
                     <p class="text-gray-600 text-sm">Compare current costs to market alternatives</p>
-                </div>
-                <div class="bg-white rounded-lg shadow-md p-6 border-t-4 border-blue-600">
+                </button>
+                <button onclick="showTool('forecast')" class="tool-nav bg-white rounded-lg shadow-md p-6 border-t-4 border-blue-600 hover:shadow-xl transition text-left cursor-pointer">
                     <div class="text-4xl mb-4">📈</div>
                     <h3 class="text-xl font-bold mb-3">Budget Forecast</h3>
                     <p class="text-gray-600 text-sm">Project multi-year costs and savings</p>
-                </div>
-                <div class="bg-white rounded-lg shadow-md p-6 border-t-4 border-blue-600">
+                </button>
+                <button onclick="showTool('rfp')" class="tool-nav bg-white rounded-lg shadow-md p-6 border-t-4 border-blue-600 hover:shadow-xl transition text-left cursor-pointer">
                     <div class="text-4xl mb-4">📄</div>
                     <h3 class="text-xl font-bold mb-3">RFP Generator</h3>
                     <p class="text-gray-600 text-sm">Create professional RFP documents</p>
-                </div>
-                <div class="bg-white rounded-lg shadow-md p-6 border-t-4 border-blue-600">
+                </button>
+                <button onclick="showTool('legislative')" class="tool-nav bg-white rounded-lg shadow-md p-6 border-t-4 border-blue-600 hover:shadow-xl transition text-left cursor-pointer">
                     <div class="text-4xl mb-4">📚</div>
                     <h3 class="text-xl font-bold mb-3">Legislative Tracker</h3>
                     <p class="text-gray-600 text-sm">Track Indiana benefits legislation</p>
+                </button>
+            </div>
+
+            <!-- Cost Calculator Tool -->
+            <div id="calculator-tool" class="tool-panel hidden">
+                <div class="bg-white rounded-lg shadow-lg p-8">
+                    <h3 class="text-3xl font-bold mb-6">Benefits Cost Calculator</h3>
+                    <div class="grid md:grid-cols-2 gap-6 mb-6">
+                        <div>
+                            <label class="block text-sm font-semibold mb-2">Municipality Name</label>
+                            <input type="text" id="calc-municipality" placeholder="City of Fishers" class="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold mb-2">Number of Employees</label>
+                            <input type="number" id="calc-employees" placeholder="500" class="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold mb-2">Employee Contribution (Monthly)</label>
+                            <input type="number" id="calc-employee-premium" placeholder="85" class="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold mb-2">Employer Cost (Monthly)</label>
+                            <input type="number" id="calc-employer-premium" placeholder="915" class="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                        </div>
+                    </div>
+                    <button onclick="calculateCosts()" class="w-full bg-blue-600 text-white py-4 rounded-lg font-bold text-lg hover:bg-blue-700 transition">
+                        Calculate Savings
+                    </button>
+                    
+                    <!-- Results -->
+                    <div id="calc-results" class="hidden mt-8">
+                        <div class="grid md:grid-cols-3 gap-6 mb-6">
+                            <div class="bg-gray-50 rounded-lg p-6 border-l-4 border-gray-500">
+                                <p class="text-sm text-gray-600 mb-2">Current Annual Cost</p>
+                                <p id="current-cost" class="text-3xl font-bold text-gray-900"></p>
+                            </div>
+                            <div class="bg-blue-50 rounded-lg p-6 border-l-4 border-blue-500">
+                                <p class="text-sm text-gray-600 mb-2">Market Alternative</p>
+                                <p id="market-cost" class="text-3xl font-bold text-blue-600"></p>
+                            </div>
+                            <div class="bg-green-50 rounded-lg p-6 border-l-4 border-green-500">
+                                <p class="text-sm text-gray-600 mb-2">Potential Savings</p>
+                                <p id="savings-amount" class="text-3xl font-bold text-green-600"></p>
+                                <p id="savings-percent" class="text-sm text-green-700 mt-1"></p>
+                            </div>
+                        </div>
+                        <div class="bg-blue-50 border-2 border-blue-200 rounded-lg p-6">
+                            <h4 class="font-bold text-blue-900 mb-2">Analysis</h4>
+                            <p id="recommendation" class="text-gray-800"></p>
+                        </div>
+                        <div class="mt-6 flex gap-4">
+                            <button onclick="downloadReport()" class="flex-1 bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700">
+                                📥 Download Report
+                            </button>
+                            <a href="tel:317-516-8938" class="flex-1 bg-green-600 text-white py-3 rounded-lg font-semibold hover:bg-green-700 text-center">
+                                📞 Discuss Results
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="text-center mt-8">
-                <p class="text-gray-600 mb-4">Call us to access the full suite of interactive tools</p>
-                <a href="tel:317-516-8938" class="inline-block bg-blue-600 text-white px-8 py-4 rounded font-bold text-lg hover:bg-blue-700">
-                    📞 Call 317-516-8938 for Access
-                </a>
+
+            <!-- Budget Forecast Tool -->
+            <div id="forecast-tool" class="tool-panel hidden">
+                <div class="bg-white rounded-lg shadow-lg p-8">
+                    <h3 class="text-3xl font-bold mb-6">Budget Forecast Tool</h3>
+                    <div class="grid md:grid-cols-2 gap-6 mb-6">
+                        <div>
+                            <label class="block text-sm font-semibold mb-2">Current Monthly Cost per Employee</label>
+                            <input type="number" id="forecast-cost" placeholder="1000" class="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold mb-2">Number of Employees</label>
+                            <input type="number" id="forecast-employees" placeholder="500" class="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold mb-2">Expected Annual Inflation (%)</label>
+                            <input type="number" id="forecast-inflation" placeholder="5" value="5" class="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold mb-2">Forecast Years</label>
+                            <input type="number" id="forecast-years" placeholder="5" value="5" min="1" max="10" class="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                        </div>
+                    </div>
+                    <button onclick="generateForecast()" class="w-full bg-indigo-600 text-white py-4 rounded-lg font-bold text-lg hover:bg-indigo-700 transition">
+                        Generate Forecast
+                    </button>
+                    
+                    <!-- Forecast Results -->
+                    <div id="forecast-results" class="hidden mt-8">
+                        <div class="bg-green-50 border-2 border-green-500 rounded-lg p-6 mb-6">
+                            <h4 class="text-lg font-bold text-green-900 mb-2">Total Savings Potential</h4>
+                            <p id="total-savings" class="text-4xl font-bold text-green-600"></p>
+                        </div>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-sm">
+                                <thead class="bg-gray-100">
+                                    <tr>
+                                        <th class="text-left py-3 px-4">Year</th>
+                                        <th class="text-right py-3 px-4">Current Path</th>
+                                        <th class="text-right py-3 px-4">Market Alternative</th>
+                                        <th class="text-right py-3 px-4">Annual Savings</th>
+                                        <th class="text-right py-3 px-4">Cumulative</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="forecast-table"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RFP Generator Tool -->
+            <div id="rfp-tool" class="tool-panel hidden">
+                <div class="bg-white rounded-lg shadow-lg p-8">
+                    <h3 class="text-3xl font-bold mb-6">RFP Generator</h3>
+                    <div class="space-y-6 mb-6">
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-semibold mb-2">Municipality Name</label>
+                                <input type="text" id="rfp-municipality" placeholder="City of Indianapolis" class="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold mb-2">Number of Employees</label>
+                                <input type="number" id="rfp-employees" placeholder="500" class="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold mb-2">Current Carrier (Optional)</label>
+                            <input type="text" id="rfp-carrier" placeholder="AIM Trust" class="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                        </div>
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-semibold mb-2">RFP Due Date</label>
+                                <input type="date" id="rfp-due-date" class="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold mb-2">Desired Effective Date</label>
+                                <input type="date" id="rfp-effective-date" class="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                            </div>
+                        </div>
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-semibold mb-2">Contact Name</label>
+                                <input type="text" id="rfp-contact-name" placeholder="Jane Smith" class="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold mb-2">Contact Email</label>
+                                <input type="email" id="rfp-contact-email" placeholder="jsmith@city.gov" class="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                            </div>
+                        </div>
+                    </div>
+                    <button onclick="generateRFP()" class="w-full bg-blue-600 text-white py-4 rounded-lg font-bold text-lg hover:bg-blue-700 transition flex items-center justify-center space-x-2">
+                        <span>📄</span>
+                        <span>Generate & Download RFP</span>
+                    </button>
+                    <div class="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
+                        <p class="text-sm text-blue-900">
+                            <strong>Note:</strong> This generates a comprehensive RFP template. Review and customize it to match your specific requirements before distribution.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Legislative Tracker Tool -->
+            <div id="legislative-tool" class="tool-panel hidden">
+                <div class="bg-white rounded-lg shadow-lg p-8">
+                    <div class="flex items-center justify-between mb-6">
+                        <div>
+                            <h3 class="text-3xl font-bold">Indiana Benefits Legislation Tracker</h3>
+                            <p class="text-gray-600 mt-2">Real-time tracking of health and benefits legislation</p>
+                        </div>
+                        <button onclick="fetchLegislation()" id="refresh-btn" class="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition">
+                            Refresh
+                        </button>
+                    </div>
+                    
+                    <input type="text" id="leg-search" placeholder="Search by bill number, title, or description..." 
+                           onkeyup="filterBills()" 
+                           class="w-full px-4 py-3 border rounded-lg mb-6 focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                    
+                    <div id="leg-loading" class="text-center py-12 hidden">
+                        <div class="inline-block animate-spin rounded-full h-12 w-12 border-b-4 border-blue-600 mb-4"></div>
+                        <p class="text-gray-600">Loading Indiana legislation...</p>
+                    </div>
+                    
+                    <div id="leg-error" class="hidden bg-red-50 border-2 border-red-200 rounded-lg p-6 mb-6">
+                        <p class="text-red-800 font-semibold mb-2">Unable to load legislation</p>
+                        <p class="text-red-700 text-sm">
+                            If this issue persists, please contact us at <a href="tel:317-516-8938" class="underline">317-516-8938</a> 
+                            or <a href="mailto:info@mark-benefits.com" class="underline">info@mark-benefits.com</a>
+                        </p>
+                    </div>
+                    
+                    <div id="leg-results" class="space-y-4">
+                        <div class="text-center py-8 text-gray-500">
+                            Click "Refresh" to load current Indiana legislation
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8 bg-gradient-to-r from-blue-50 to-indigo-50 border-2 border-blue-200 rounded-lg p-6">
+                        <h4 class="font-bold text-blue-900 mb-2">About Legislative Tracking</h4>
+                        <p class="text-sm text-blue-800 leading-relaxed">
+                            <strong>Powered by LegiScan:</strong> Track Indiana legislation affecting municipal benefits, health insurance, and employee coverage. 
+                            This tool monitors current session bills to help municipalities stay informed of potential regulatory changes.
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -170,8 +375,8 @@
             <h2 class="text-4xl font-bold mb-6">Ready to Optimize Your Benefits?</h2>
             <p class="text-xl mb-8">Whether you're a municipality, turning 65, or a small business owner—we're here to help.</p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="tel:317-498-8819" class="bg-white text-blue-600 px-8 py-4 rounded font-bold text-lg hover:bg-gray-100">
-                    📞 Call 317-498-8819
+                <a href="tel:317-516-8938" class="bg-white text-blue-600 px-8 py-4 rounded font-bold text-lg hover:bg-gray-100">
+                    📞 Call 317-516-8938
                 </a>
                 <a href="mailto:info@mark-benefits.com" class="bg-transparent border-2 border-white px-8 py-4 rounded font-bold text-lg hover:bg-white hover:text-blue-600">
                     ✉️ Email Us
@@ -205,7 +410,7 @@
                     <h3 class="font-bold mb-4">Contact</h3>
                     <ul class="space-y-2 text-gray-400 text-sm">
                         <li>📍 Fishers, Indiana</li>
-                        <li>📞 <a href="tel:317-498-8819" class="hover:text-white">317-498-8819</a></li>
+                        <li>📞 <a href="tel:317-516-8938" class="hover:text-white">317-516-8938</a></li>
                         <li>✉️ <a href="mailto:info@mark-benefits.com" class="hover:text-white">info@mark-benefits.com</a></li>
                     </ul>
                 </div>
@@ -219,5 +424,326 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        // Tool Navigation
+        function showTool(toolName) {
+            // Hide all tools
+            document.querySelectorAll('.tool-panel').forEach(panel => {
+                panel.classList.add('hidden');
+            });
+            
+            // Show selected tool
+            document.getElementById(toolName + '-tool').classList.remove('hidden');
+            
+            // Scroll to tool
+            document.getElementById(toolName + '-tool').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        // Cost Calculator
+        let calculationResults = {};
+        
+        function calculateCosts() {
+            const municipality = document.getElementById('calc-municipality').value || 'Your Municipality';
+            const employees = parseInt(document.getElementById('calc-employees').value) || 500;
+            const employeePremium = parseFloat(document.getElementById('calc-employee-premium').value) || 0;
+            const employerPremium = parseFloat(document.getElementById('calc-employer-premium').value) || 0;
+            
+            const totalPremium = employeePremium + employerPremium || 1000;
+            const marketPremium = Math.round(totalPremium * 0.87); // 13% savings
+            const aimCost = totalPremium * employees * 12;
+            const marketCost = marketPremium * employees * 12;
+            const savings = aimCost - marketCost;
+            const savingsPercent = Math.round(((totalPremium - marketPremium) / totalPremium) * 100);
+            
+            // Store results
+            calculationResults = {
+                municipality,
+                employees,
+                totalPremium,
+                marketPremium,
+                aimCost,
+                marketCost,
+                savings,
+                savingsPercent
+            };
+            
+            // Display results
+            document.getElementById('current-cost').textContent = '$' + aimCost.toLocaleString();
+            document.getElementById('market-cost').textContent = '$' + marketCost.toLocaleString();
+            document.getElementById('savings-amount').textContent = '$' + savings.toLocaleString();
+            document.getElementById('savings-percent').textContent = savingsPercent + '% reduction';
+            document.getElementById('recommendation').textContent = 
+                `Based on Indiana market data, exploring competitive alternatives could save ${municipality} approximately $${savings.toLocaleString()} annually. That's $${Math.round(savings/12).toLocaleString()} every month!`;
+            
+            document.getElementById('calc-results').classList.remove('hidden');
+        }
+        
+        function downloadReport() {
+            const r = calculationResults;
+            const reportContent = `AIM TRUST COMPARISON REPORT
+${r.municipality}
+Generated: ${new Date().toLocaleDateString()}
+
+CURRENT SITUATION:
+• Current Annual Cost: $${r.aimCost.toLocaleString()}/year
+• Cost per employee: $${r.totalPremium}/month
+
+MARKET ALTERNATIVE:
+• Estimated Market Cost: $${r.marketCost.toLocaleString()}/year  
+• Cost per employee: $${r.marketPremium}/month
+
+POTENTIAL SAVINGS:
+• Annual Savings: $${r.savings.toLocaleString()}
+• Percentage Reduction: ${r.savingsPercent}%
+
+Generated by Mark Benefits
+317-516-8938 | info@mark-benefits.com`;
+            
+            const blob = new Blob([reportContent], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = r.municipality.replace(/\s+/g, '-') + '-Analysis.txt';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        // Budget Forecast
+        function generateForecast() {
+            const currentCost = parseFloat(document.getElementById('forecast-cost').value) || 1000;
+            const employees = parseInt(document.getElementById('forecast-employees').value) || 500;
+            const inflationRate = parseFloat(document.getElementById('forecast-inflation').value) / 100 || 0.05;
+            const years = parseInt(document.getElementById('forecast-years').value) || 5;
+            
+            let cumulativeSavings = 0;
+            let tableHTML = '';
+            
+            for (let year = 1; year <= years; year++) {
+                const inflatedCost = currentCost * Math.pow(1 + inflationRate, year);
+                const totalCost = Math.round(inflatedCost * employees * 12);
+                const marketCost = Math.round(totalCost * 0.87);
+                const annualSavings = totalCost - marketCost;
+                cumulativeSavings += annualSavings;
+                
+                tableHTML += `
+                    <tr class="border-b hover:bg-gray-50">
+                        <td class="py-3 px-4">${new Date().getFullYear() + year}</td>
+                        <td class="text-right py-3 px-4">$${totalCost.toLocaleString()}</td>
+                        <td class="text-right py-3 px-4 text-blue-600">$${marketCost.toLocaleString()}</td>
+                        <td class="text-right py-3 px-4 text-green-600">$${annualSavings.toLocaleString()}</td>
+                        <td class="text-right py-3 px-4 font-semibold text-green-700">$${Math.round(cumulativeSavings).toLocaleString()}</td>
+                    </tr>
+                `;
+            }
+            
+            document.getElementById('total-savings').textContent = '$' + Math.round(cumulativeSavings).toLocaleString();
+            document.getElementById('forecast-table').innerHTML = tableHTML;
+            document.getElementById('forecast-results').classList.remove('hidden');
+        }
+
+        // RFP Generator
+        function generateRFP() {
+            const municipality = document.getElementById('rfp-municipality').value || '[Municipality Name]';
+            const employees = document.getElementById('rfp-employees').value || '[Number]';
+            const carrier = document.getElementById('rfp-carrier').value || '[Current Carrier]';
+            const dueDate = document.getElementById('rfp-due-date').value || '[Date]';
+            const effectiveDate = document.getElementById('rfp-effective-date').value || '[Date]';
+            const contactName = document.getElementById('rfp-contact-name').value || '[Name]';
+            const contactEmail = document.getElementById('rfp-contact-email').value || '[Email]';
+            
+            const rfpContent = `REQUEST FOR PROPOSAL - Employee Group Health Insurance Benefits
+${municipality}
+
+SUBMISSION DEADLINE: ${dueDate}
+EFFECTIVE DATE: ${effectiveDate}
+
+SECTION 1: MUNICIPALITY INFORMATION
+Municipality: ${municipality}
+Number of Eligible Employees: ${employees}
+Current Carrier: ${carrier}
+
+Contact Person: ${contactName}
+Email: ${contactEmail}
+
+SECTION 2: SCOPE OF SERVICES
+The municipality is seeking proposals from qualified insurance carriers and third-party 
+administrators to provide comprehensive group health insurance coverage for eligible 
+employees and their dependents.
+
+SECTION 3: COVERAGE REQUIREMENTS
+Required Coverage Types:
+- Medical Insurance (PPO and/or HDHP options)
+- Prescription Drug Coverage
+- Dental Insurance
+- Vision Insurance
+- Life Insurance and AD&D
+- Short-term and Long-term Disability
+
+SECTION 4: PROPOSAL REQUIREMENTS
+Respondents must provide:
+1. Company background and qualifications
+2. Proposed plan designs (minimum 2 medical options)
+3. Premium rates by tier (Employee, Employee+Spouse, Employee+Child(ren), Family)
+4. Network information and provider access
+5. Implementation timeline and support services
+6. Claims processing and customer service procedures
+7. Wellness program offerings
+8. Technology platforms and member portals
+9. Reporting capabilities
+10. References from similar-sized municipal clients
+
+SECTION 5: EVALUATION CRITERIA
+Proposals will be evaluated based on:
+- Cost competitiveness (40%)
+- Plan design and benefit quality (25%)
+- Network adequacy and provider access (15%)
+- Service capabilities and technology (10%)
+- Implementation support (5%)
+- References and experience with municipalities (5%)
+
+SECTION 6: SUBMISSION INSTRUCTIONS
+Submit proposals electronically to: ${contactEmail}
+Deadline: ${dueDate} by 5:00 PM EST
+
+For questions, contact: ${contactName} | ${contactEmail}
+
+Generated by Mark Benefits
+317-516-8938 | info@mark-benefits.com`;
+            
+            const blob = new Blob([rfpContent], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = municipality.replace(/\s+/g, '-') + '-Benefits-RFP.txt';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        // Legislative Tracker
+        let allBills = [];
+        
+        async function fetchLegislation() {
+            const loadingEl = document.getElementById('leg-loading');
+            const errorEl = document.getElementById('leg-error');
+            const resultsEl = document.getElementById('leg-results');
+            const refreshBtn = document.getElementById('refresh-btn');
+            
+            loadingEl.classList.remove('hidden');
+            errorEl.classList.add('hidden');
+            resultsEl.innerHTML = '';
+            refreshBtn.disabled = true;
+            refreshBtn.textContent = 'Loading...';
+            
+            try {
+                const apiKey = 'e57a5dab94fd5d93f2f10aaf33e24a07';
+                const state = 'IN';
+                const corsProxy = 'https://api.allorigins.win/raw?url=';
+                
+                // Get current session
+                const sessionUrl = `https://api.legiscan.com/?key=${apiKey}&op=getSessionList&state=${state}`;
+                const sessionResponse = await fetch(corsProxy + encodeURIComponent(sessionUrl));
+                const sessionData = await sessionResponse.json();
+                
+                if (sessionData.status === 'OK' && sessionData.sessions) {
+                    const sessions = Object.values(sessionData.sessions);
+                    const currentYear = new Date().getFullYear();
+                    const currentSession = sessions.find(s => s.year_start === currentYear) || sessions[0];
+                    
+                    if (currentSession) {
+                        // Get bills
+                        const billsUrl = `https://api.legiscan.com/?key=${apiKey}&op=getMasterList&state=${state}&id=${currentSession.session_id}`;
+                        const billsResponse = await fetch(corsProxy + encodeURIComponent(billsUrl));
+                        const billsData = await billsResponse.json();
+                        
+                        if (billsData.status === 'OK' && billsData.masterlist) {
+                            allBills = Object.values(billsData.masterlist)
+                                .filter(bill => {
+                                    if (!bill || typeof bill !== 'object') return false;
+                                    const title = (bill.title || '').toLowerCase();
+                                    const desc = (bill.description || '').toLowerCase();
+                                    return title.includes('health') || title.includes('insurance') || 
+                                           title.includes('benefit') || title.includes('medicare') ||
+                                           title.includes('employee') || desc.includes('health') ||
+                                           desc.includes('insurance') || desc.includes('benefit');
+                                })
+                                .slice(0, 25);
+                            
+                            displayBills(allBills);
+                        } else {
+                            throw new Error('No bills found');
+                        }
+                    }
+                }
+            } catch (error) {
+                console.error('API Error:', error);
+                errorEl.classList.remove('hidden');
+            } finally {
+                loadingEl.classList.add('hidden');
+                refreshBtn.disabled = false;
+                refreshBtn.textContent = 'Refresh';
+            }
+        }
+        
+        function displayBills(bills) {
+            const resultsEl = document.getElementById('leg-results');
+            
+            if (bills.length === 0) {
+                resultsEl.innerHTML = '<p class="text-center py-8 text-gray-500">No legislation found matching your search.</p>';
+                return;
+            }
+            
+            resultsEl.innerHTML = `<p class="text-sm text-gray-600 mb-4">Showing ${bills.length} benefits-related bills</p>` +
+                bills.map(bill => `
+                <div class="border-2 border-gray-200 rounded-lg p-6 hover:border-blue-300 hover:shadow-md transition">
+                    <div class="flex items-start justify-between">
+                        <div class="flex-1">
+                            <div class="flex items-center space-x-2 mb-3">
+                                <span class="bg-blue-600 text-white text-sm font-bold px-3 py-1 rounded">
+                                    ${bill.bill_number || 'N/A'}
+                                </span>
+                                ${bill.status ? `<span class="text-xs font-semibold px-2 py-1 rounded bg-gray-100 text-gray-800">
+                                    ${bill.status_desc || 'Status ' + bill.status}
+                                </span>` : ''}
+                            </div>
+                            <h4 class="font-bold text-gray-900 mb-2 text-lg">${bill.title || 'Untitled Bill'}</h4>
+                            ${bill.description ? `<p class="text-sm text-gray-600 mb-3 leading-relaxed">${bill.description}</p>` : ''}
+                            ${bill.last_action_date ? `
+                                <div class="text-xs text-gray-500">
+                                    Last Action: ${new Date(bill.last_action_date).toLocaleDateString()}
+                                </div>
+                            ` : ''}
+                        </div>
+                        ${bill.url ? `
+                            <a href="${bill.url}" target="_blank" rel="noopener noreferrer" 
+                               class="ml-4 text-blue-600 hover:text-blue-700 p-2 hover:bg-blue-50 rounded transition text-2xl">
+                                →
+                            </a>
+                        ` : ''}
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        function filterBills() {
+            const searchTerm = document.getElementById('leg-search').value.toLowerCase();
+            if (!searchTerm) {
+                displayBills(allBills);
+                return;
+            }
+            
+            const filtered = allBills.filter(bill => 
+                (bill.title || '').toLowerCase().includes(searchTerm) ||
+                (bill.description || '').toLowerCase().includes(searchTerm) ||
+                (bill.bill_number || '').toLowerCase().includes(searchTerm)
+            );
+            
+            displayBills(filtered);
+        }
+    </script>
 </body>
 </html>
